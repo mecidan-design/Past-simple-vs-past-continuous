@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Simple vs Past Continuous</title>
+<style>
+/* =========================================================
+   PAST SIMPLE VS PAST CONTINUOUS - dibujito de los 90.
+   Estetica de 5th form (tipo Cartoon Network): contorno negro grueso,
+   sombra dura sin blur, colores planos, papel crema para el texto.
+   Fuentes de sistema, abre sin internet, SIN SONIDO.
+   ========================================================= */
+:root{
+  --negro:#141414;
+  --crema:#FFF8E7; --papel:#FFFDF5;
+  --rosa:#FF3D7F; --turquesa:#00C2CB; --amarillo:#FFD23F;
+  --naranja:#FF7A1A; --lima:#8FE04A; --violeta:#7B3FF2;
+  --rojo:#EF2B2D; --azul:#2D7DD2; --uva:#3B1D6E;
+  --gris:#5F5F5F;
+  --titulo:"Arial Black","Arial Bold",Impact,"Franklin Gothic Heavy","Trebuchet MS",Arial,sans-serif;
+  --cuerpo:"Trebuchet MS",Verdana,"Segoe UI",Arial,sans-serif;
+  --linea:4px solid var(--negro);
+  --sombra:6px 6px 0 var(--negro);
+  --sombra-chica:4px 4px 0 var(--negro);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--cuerpo); color:var(--negro); min-height:100vh;
+  padding:20px 14px 0; line-height:1.55;
+  background:
+    radial-gradient(circle, rgba(0,0,0,.14) 1.6px, transparent 1.7px) 0 0/22px 22px,
+    repeating-linear-gradient(135deg, rgba(255,255,255,.10) 0 26px, rgba(0,0,0,.05) 26px 52px),
+    linear-gradient(170deg, var(--violeta) 0%, #9A46E0 40%, var(--turquesa) 100%);
+  background-attachment:fixed;
+}
+.wrap{max-width:920px;margin:0 auto}
+.screen{display:none}
+.screen.on{display:block}
+
+h1,h2,h3,.tag,.btn,.pickbtn,.zt,.znum,.rn,.gn,.lab{font-family:var(--titulo)}
+h1,h2,h3{text-transform:uppercase; letter-spacing:.5px; line-height:1.05}
+
+.sticker{
+  color:var(--crema);
+  -webkit-text-stroke:3px var(--negro);
+  paint-order:stroke fill;
+  text-shadow:5px 5px 0 var(--negro);
+}
+
+/* ---------- cabecera ---------- */
+.hero, .phero{
+  position:relative; overflow:hidden;
+  background:var(--rosa);
+  border:6px solid var(--negro); border-radius:26px;
+  box-shadow:10px 10px 0 var(--negro);
+  padding:22px 24px 24px; margin-bottom:26px;
+  transform:rotate(-.6deg);
+}
+.hero:before, .phero:before{
+  content:""; position:absolute; left:50%; top:-60%;
+  width:150%; height:220%; transform:translateX(-50%);
+  background:repeating-conic-gradient(from 0deg at 50% 50%,
+    rgba(255,255,255,.22) 0deg 9deg, transparent 9deg 18deg);
+  pointer-events:none;
+}
+.hero > *, .phero > *{position:relative}
+.phero{background:var(--turquesa)}
+.hero .tag, .phero .tag{
+  display:inline-block; background:var(--amarillo); color:var(--negro);
+  border:var(--linea); border-radius:999px; padding:4px 15px;
+  font-size:.82rem; letter-spacing:2px; text-transform:uppercase;
+  box-shadow:var(--sombra-chica); transform:rotate(-2deg); margin-bottom:12px;
+}
+.hero h1{margin:0 0 12px; font-size:clamp(1.9rem,7.4vw,3.4rem)}
+.phero h1{margin:0; font-size:clamp(1.4rem,5.6vw,2.6rem)}
+.hero .goal{
+  background:var(--papel); border:var(--linea); border-radius:14px;
+  box-shadow:var(--sombra-chica); padding:11px 14px; margin:0;
+  font-size:.95rem; font-weight:600;
+}
+.checker{
+  height:24px; margin:0 0 24px;
+  border:4px solid var(--negro); border-radius:8px; box-shadow:var(--sombra-chica);
+  background:repeating-conic-gradient(var(--negro) 0% 25%, var(--crema) 0% 50%) 0 0/24px 24px;
+}
+.pagetop{margin:0 0 18px}
+
+/* ---------- mapa del menu ---------- */
+.map{display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); margin-bottom:28px}
+.zone{
+  display:block; text-decoration:none; color:var(--negro);
+  background:var(--papel);
+  border:6px solid var(--negro); border-radius:20px;
+  box-shadow:9px 9px 0 var(--negro);
+  padding:16px 17px 18px;
+}
+.zone:nth-child(3n+1){transform:rotate(-1deg)}
+.zone:nth-child(3n+2){transform:rotate(.8deg)}
+.zone:nth-child(3n+3){transform:rotate(-.4deg)}
+.zone:hover{box-shadow:13px 13px 0 var(--negro); background:#FFFCEF}
+.zone .znum{
+  display:inline-block; font-size:.76rem; letter-spacing:2px; text-transform:uppercase;
+  color:var(--crema); background:var(--negro); border-radius:999px; padding:3px 13px;
+  transform:rotate(-2deg); margin-bottom:11px;
+}
+.zone .zt{font-size:1.08rem; text-transform:uppercase; line-height:1.08; margin-bottom:10px; color:var(--uva)}
+.zone .zd{font-size:.87rem; margin:0; font-weight:600}
+.zone .zscore{font-family:var(--titulo); font-size:.78rem; margin:8px 0 0; color:var(--uva); min-height:1.1em}
+.zone:nth-child(1) .znum{background:var(--rosa)}
+.zone:nth-child(2) .znum{background:var(--azul)}
+.zone:nth-child(3) .znum{background:var(--naranja); color:var(--negro)}
+.zone:nth-child(4) .znum{background:var(--violeta)}
+.zone:nth-child(5) .znum{background:var(--lima); color:var(--negro)}
+.zone:nth-child(6) .znum{background:var(--turquesa); color:var(--negro)}
+.zone:nth-child(7) .znum{background:var(--rojo)}
+.zone:nth-child(8) .znum{background:var(--uva)}
+
+/* ---------- tarjetas (una por parte) ---------- */
+.card{
+  background:var(--papel);
+  border:6px solid var(--negro); border-radius:22px;
+  box-shadow:9px 9px 0 var(--negro);
+  padding:20px 20px 22px; margin:0 0 28px; position:relative;
+}
+.card.partA{background:linear-gradient(180deg,#E9FBFF 0 74px,var(--papel) 74px)}
+.card.partB{background:linear-gradient(180deg,#FFE9F2 0 74px,var(--papel) 74px)}
+.card.partC{background:linear-gradient(180deg,#EDFBE0 0 74px,var(--papel) 74px)}
+.card.partR{background:linear-gradient(180deg,#FFF0DE 0 74px,var(--papel) 74px)}
+.card.partX{background:linear-gradient(180deg,#FFF7CC 0 74px,var(--papel) 74px)}
+.card h2{margin:0 0 8px; font-size:clamp(1.2rem,4.2vw,1.8rem); color:var(--uva)}
+.card .lead{
+  display:inline-block; margin:0 0 10px; font-family:var(--titulo); font-size:1rem;
+  background:var(--rojo); color:var(--crema); border:3px solid var(--negro);
+  border-radius:8px; padding:1px 12px; box-shadow:3px 3px 0 var(--negro); transform:rotate(-1.5deg);
+}
+.instr{margin:.2rem 0 1rem; font-weight:700; font-size:.97rem}
+.pnote{
+  background:var(--amarillo); border:var(--linea); border-radius:12px; box-shadow:var(--sombra-chica);
+  padding:8px 14px; margin:0 0 26px; font-weight:700; font-size:.95rem; transform:rotate(.4deg);
+}
+
+/* ---------- cajas de gramatica de la hoja ---------- */
+.boxrow{display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); margin:0 0 28px}
+.gbox{
+  border:6px solid var(--negro); border-radius:22px; box-shadow:9px 9px 0 var(--negro);
+  padding:14px 18px 16px; background:var(--papel);
+}
+.gbox.gboxa{background:#FFE9F2; transform:rotate(-.5deg)}
+.gbox.gboxb{background:#E4F4FF; transform:rotate(.5deg)}
+.gbox h3{margin:0 0 8px; font-size:1.2rem; color:var(--uva)}
+.gbox p{margin:.3rem 0; font-size:.95rem; font-weight:600}
+.gbox p.bul{padding-left:6px}
+.gbox p.formula{
+  display:inline-block; background:var(--negro); color:var(--amarillo); border-radius:8px;
+  padding:1px 10px; font-family:var(--titulo); font-size:.92rem;
+}
+
+/* ---------- banco de palabras ---------- */
+.bank{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 16px; padding:12px; border:var(--linea);
+  border-radius:16px; background:var(--crema); box-shadow:var(--sombra-chica)}
+.chip{font-family:var(--titulo); font-size:.9rem; border:3px solid var(--negro); border-radius:999px; padding:1px 13px;
+  box-shadow:2px 2px 0 var(--negro)}
+.chip.c0{background:#FFB3CF}.chip.c1{background:#9BE9ED}.chip.c2{background:#FFE58A}
+.chip.c3{background:#C9EFA0}.chip.c4{background:#D5C2FA}
+
+/* ---------- items ---------- */
+.item{
+  display:flex; gap:11px; align-items:flex-start; flex-wrap:wrap;
+  border-left:7px solid var(--turquesa); border-radius:0 12px 12px 0;
+  background:rgba(0,0,0,.03); padding:11px 13px; margin:11px 0;
+}
+.item.done{border-left-color:var(--lima)}
+.item.failed{border-left-color:var(--rojo)}
+.item.example{border-left-color:var(--amarillo); background:#FFF7CC}
+.rn{
+  background:var(--naranja); color:var(--negro);
+  border:3px solid var(--negro); border-radius:999px;
+  min-width:28px; text-align:center; font-size:.8rem; padding:1px 8px;
+  box-shadow:2px 2px 0 var(--negro); flex:0 0 auto;
+}
+.rn small{font-family:var(--cuerpo); font-weight:700; font-size:.66rem; text-transform:uppercase}
+.stext{flex:1 1 230px; font-size:1rem; line-height:2.15; min-width:0}
+.prompt{font-weight:700}
+.cue{color:var(--rojo)}
+.colR .cue{color:var(--azul)}
+.exans{border-bottom:3px solid var(--negro); font-weight:700; padding:0 4px}
+.circ{border:3px solid var(--rojo); border-radius:10px; font-weight:700; padding:0 6px}
+.gn{
+  display:inline-block; background:var(--rosa); color:var(--crema);
+  border:2px solid var(--negro); border-radius:999px; min-width:20px; text-align:center;
+  font-size:.62rem; padding:0 5px; margin:0 3px 0 4px; vertical-align:middle;
+  transform:translateY(-1px);
+}
+
+/* ---------- tabla de la hoja 4 ---------- */
+.booktable{
+  width:100%; border-collapse:separate; border-spacing:0; margin:12px 0 6px;
+  border:var(--linea); border-radius:12px; overflow:hidden; box-shadow:var(--sombra-chica);
+}
+.booktable th, .booktable td{
+  border-bottom:3px solid var(--negro); border-right:3px solid var(--negro);
+  padding:4px 6px; text-align:left; background:var(--papel); vertical-align:top;
+}
+.booktable tr:last-child td{border-bottom:none}
+.booktable th:last-child, .booktable td:last-child{border-right:none}
+.booktable th{background:var(--violeta); color:var(--crema); text-transform:uppercase; letter-spacing:1px; font-size:.85rem; padding:9px 11px}
+.booktable td .item{margin:4px 0; padding:6px 8px; background:transparent}
+.booktable td .stext{font-size:.93rem; line-height:2.05}
+
+/* ---------- campos ---------- */
+.gwrap{white-space:nowrap}
+input.gap{
+  font-family:var(--cuerpo); font-size:.97rem; font-weight:700; color:var(--negro);
+  background:#fff; border:3px solid var(--negro); border-radius:9px;
+  padding:3px 8px; outline:none; box-shadow:3px 3px 0 rgba(0,0,0,.28);
+  max-width:100%; margin:0 2px;
+}
+input.gap.wide{width:100%; margin:6px 0 0}
+input.gap:focus{border-color:var(--violeta); box-shadow:3px 3px 0 var(--violeta)}
+input.gap.ok{background:#D6F8BE; box-shadow:3px 3px 0 var(--lima)}
+input.gap.no{background:#FFD9DE; box-shadow:3px 3px 0 var(--rojo)}
+
+/* ---------- opciones ---------- */
+.optgroup{display:inline-flex; gap:7px; flex-wrap:wrap; vertical-align:middle; margin:0 3px}
+.pickbtn{
+  font-size:.84rem; cursor:pointer; font-weight:700;
+  background:var(--crema); color:var(--negro);
+  border:3px solid var(--negro); border-radius:10px;
+  box-shadow:3px 3px 0 var(--negro); padding:3px 11px;
+}
+.pickbtn:hover{background:var(--amarillo)}
+.pickbtn:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--negro)}
+.pickbtn.on{background:var(--turquesa)}
+.pickbtn.good{background:var(--lima)}
+.pickbtn.bad{background:var(--rojo); color:var(--crema)}
+
+/* ---------- botones ---------- */
+.btnrow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:20px}
+.btn{
+  font-size:.9rem; text-transform:uppercase; letter-spacing:1px;
+  cursor:pointer; color:var(--negro); background:var(--amarillo);
+  border:var(--linea); border-radius:12px;
+  box-shadow:var(--sombra); padding:9px 18px; display:inline-block; text-decoration:none;
+}
+.btn:hover{background:var(--naranja)}
+.btn:active{transform:translate(3px,3px); box-shadow:3px 3px 0 var(--negro)}
+.btn.ghost{background:var(--crema)}
+.btn.ghost:hover{background:var(--turquesa)}
+.btn[disabled]{background:#DDD; color:#888; cursor:default; box-shadow:var(--sombra-chica); transform:none}
+
+/* ---------- correccion ---------- */
+.exp{
+  flex:1 1 100%; border:3px solid var(--negro); border-radius:12px; background:#E8FBD8;
+  box-shadow:3px 3px 0 var(--negro); padding:6px 12px; margin:2px 0 0;
+}
+.exp.wrong{background:#FFE4E8}
+.exp .sol{font-family:var(--titulo); font-size:.9rem}
+.explist{margin-top:18px; border-top:4px dashed var(--negro); padding-top:12px}
+.item.fbitem{align-items:center; background:transparent; border-left:0; padding:3px 0; margin:6px 0}
+.item.fbitem .exp{flex:1 1 200px; margin:0}
+.allgood{font-family:var(--titulo); margin:4px 0}
+.scorebox{margin-top:14px}
+.medal{
+  display:inline-flex; align-items:center; gap:12px; background:var(--amarillo);
+  border:var(--linea); border-radius:999px; box-shadow:var(--sombra-chica); padding:4px 8px 4px 16px;
+}
+.medal .mt{font-family:var(--titulo); font-size:.8rem; text-transform:uppercase; letter-spacing:1px}
+.medal .ms{font-family:var(--titulo); font-size:1rem; background:var(--negro); color:var(--amarillo);
+  border-radius:999px; padding:1px 14px}
+.rpwas[hidden]{display:none}
+
+/* ---------- navegacion y pie ---------- */
+.bottomnav{display:flex; gap:12px; flex-wrap:wrap; margin:8px 0 26px}
+footer.cr{
+  margin-top:34px; padding:18px 0 28px; text-align:center;
+  color:rgba(255,248,231,.72); font-size:.7rem; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
+}
+
+@media (max-width:520px){
+  body{padding:14px 10px 0}
+  .card{padding:16px 13px 18px; border-width:5px}
+  .hero, .phero{padding:18px 16px 20px}
+  .stext{flex-basis:170px}
+  .booktable th, .booktable td{padding:3px 4px}
+}
+
+/* =========================================================
+   LA TARJETA DE ENTREGA
+   =========================================================
+   Se estila con sus propias variables --rp-*, que toman por defecto
+   las del sitio si existen. Para adaptarla a otra paleta alcanza con
+   redefinir el bloque de abajo: no hay que tocar ninguna regla.
+   ========================================================= */
+.rpcard{
+  --rp-fondo:  var(--crema);
+  --rp-papel:  #fff;
+  --rp-tinta:  var(--negro);
+  --rp-borde:  var(--negro);
+  --rp-acento: var(--rojo);
+  --rp-acento-claro: var(--amarillo);
+  --rp-sombra: var(--negro);
+  --rp-titulo: var(--titulo);
+  --rp-cuerpo: var(--cuerpo);
+  --rp-suave:  #5c4a2c;
+  --rp-bien:   #14663a;
+  --rp-mal:    #8f1230;
+
+  background:var(--rp-fondo);
+  border:4px solid var(--rp-borde);
+  border-radius:18px;
+  padding:26px;
+  margin:0 0 26px;
+  color:var(--rp-tinta);
+  box-shadow:10px 10px 0 var(--rp-sombra);
+  transform:rotate(.25deg);
+  position:relative;
+}
+.rpcard h2{
+  font-family:var(--rp-titulo);font-weight:900;font-size:1.5rem;line-height:1.15;
+  letter-spacing:.6px;margin:.1rem 0 .3rem;color:var(--rp-tinta);
+}
+.rpcard .sub{font-size:.92rem;color:var(--rp-suave);margin:0 0 16px;line-height:1.5}
+.rpcard .tag{
+  display:inline-block;font-family:var(--rp-titulo);font-weight:900;font-size:.72rem;
+  letter-spacing:2px;text-transform:uppercase;background:var(--rp-acento-claro);
+  border:3px solid var(--rp-borde);border-radius:999px;padding:2px 14px;margin-bottom:10px;
+}
+.rprow{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.rprow label{
+  flex:1 1 180px;display:flex;flex-direction:column;gap:5px;
+  font-family:var(--rp-titulo);font-weight:700;font-size:.76rem;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--rp-suave);
+}
+.rprow input,.rprow select{
+  font-family:var(--rp-cuerpo);font-size:1rem;font-weight:600;color:var(--rp-tinta);
+  background:var(--rp-papel);border:3px solid var(--rp-borde);border-radius:10px;
+  padding:8px 11px;width:100%;
+}
+.rprow select{cursor:pointer;height:46px}
+/* el placeholder tiene que verse como pista, no como dato ya cargado */
+.rprow input::placeholder{color:#a8977a;font-weight:500}
+.rprow input:focus,.rprow select:focus{outline:0;background:#fff;box-shadow:0 0 0 4px var(--rp-acento)}
+.rpmsg{
+  margin:12px 0 0;font-family:var(--rp-titulo);font-weight:700;font-size:.95rem;
+  letter-spacing:.4px;min-height:1.2em;
+}
+.rpmsg.ok{color:var(--rp-bien)}
+.rpmsg.no{color:var(--rp-mal)}
+.rpfine{margin:10px 0 0;font-size:.78rem;color:#7a6647;line-height:1.5}
+
+/* la tarjeta trae sus propios botones: no depende de los del sitio */
+.rpcard .btnrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.rpcard .btn{
+  font-family:var(--rp-titulo);font-weight:700;font-size:.95rem;letter-spacing:.7px;
+  color:var(--rp-borde);background:linear-gradient(180deg,var(--rp-acento-claro),var(--rp-acento));
+  border:3px solid var(--rp-borde);border-radius:999px;padding:10px 24px;cursor:pointer;
+  box-shadow:5px 5px 0 var(--rp-borde);transition:transform .07s, box-shadow .07s;
+}
+.rpcard .btn:hover{filter:brightness(1.07)}
+.rpcard .btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--rp-borde)}
+.rpcard .btn:disabled{opacity:.6;cursor:default}
+.rpcard .btn.ghost{background:var(--rp-papel)}
+/* el boton de copiar nace escondido y aparece si falla un envio */
+.rpcard [hidden]{display:none!important}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="screen" id="s-menu">
+  <div class="hero">
+    <span class="tag">Practice</span>
+    <h1 class="sticker">Past Simple vs Past Continuous</h1>
+    <p class="goal">8 worksheets. Pick one, do the exercises, press "Check my answers" and send your result to your teacher.</p>
+  </div>
+  <div class="checker"></div>
+  <div class="map"></div>
+</section>
+<section class="screen" id="s-1"></section>
+<section class="screen" id="s-2"></section>
+<section class="screen" id="s-3"></section>
+<section class="screen" id="s-4"></section>
+<section class="screen" id="s-5"></section>
+<section class="screen" id="s-6"></section>
+<section class="screen" id="s-7"></section>
+<section class="screen" id="s-8"></section>
+</div>
+<footer class="cr">Copyright Prof Dan M. Mecikovsky</footer>
+<script id="data-block">
+/* ============================================================
+   DATOS - Past simple vs Past continuous (8 hojas)
+   ============================================================
+   SOLO CONTENIDO. Cero referencias al DOM (el verificador de Node
+   carga este bloque en un sandbox).
+
+   El texto de cada hoja esta copiado LITERAL de los PDF que mando el
+   profesor (worksheet_*.pdf). No se corrigio ortografia ni tipografia.
+   Lo unico que se agrego son las CLAVES de respuesta, porque los PDF no
+   traen respuestas.
+
+   Mini-marcado dentro de los textos:
+     [[a|b]]      hueco de texto; a y b son respuestas aceptadas
+     <<x|*y>>     opciones; las que llevan * son las correctas
+     {{texto}}    ejemplo ya resuelto (subrayado); con "::" lo que sigue
+                  va encerrado en un circulo
+     ^^texto^^    frase resaltada (las de color de la tabla)
+
+   Ver la lista de DECISIONES AMBIGUAS en el README: ahi estan las
+   respuestas que acepte de mas y los errores del PDF que quedaron
+   tal cual.
+   ============================================================ */
+var DATA = {
+  pages: [
+
+    /* ---------------------------------------------------------
+       1 - worksheet_1000285 (1).pdf
+       --------------------------------------------------------- */
+    { id: "1", title: "PAST CONTINUOUS OR PAST SIMPLE", sub: "Two options + brackets",
+      sections: [
+        { name: "Part A", instr: "Complete the correct option", kind: "list",
+          items: [
+            { n: "1",  t: "The plane <<*WAS FLYING|FLEW>> to Paris when it crashed." },
+            { n: "2",  t: "The students <<WAITED|*WERE WAITING>> for the bus when it started to rain." },
+            { n: "3",  t: "We were crossing when the traffic lights <<*TURNED|WAS TURNING>> red." },
+            { n: "4",  t: "When their mother called, the children <<PLAYED|*WERE PLAYING>> games." },
+            { n: "5",  t: "Sue <<*WAS WASHING|WASHED>> the dishes when the phone rang." },
+            { n: "6",  t: "My father <<*WERE COOKING|*COOKED>> lunch when I got home.", sol: "WERE COOKING / COOKED" },
+            { n: "7",  t: "Jim <<WAS BREAKING|*BROKE>> his leg when he was playing golf." },
+            { n: "8",  t: "My brother was jumping on the bed when my mum <<*WALKED|WAS WALKING>> in." },
+            { n: "9",  t: "Someone <<was taking|*took>> Peter’s bag while he was making a phone call." },
+            { n: "10", t: "When I <<*ARRIVED|WAS ARRIVING>>, I went into the kitchen." }
+          ] },
+        { name: "Part B", instr: "Put the verbs in brackets into the past simple or past continuous.", kind: "list",
+          items: [
+            { n: "1", t: "When the teacher [[came]] (come) into the room, two boys [[were playing]] (play) football." },
+            { n: "2", t: "Peter [[turned on]] (turn on) the TV, but nothing [[happened]] (happen)." },
+            { n: "3", t: "When Helen [[was walking]] (walk) to school, she [[saw]] (see) the old man again." },
+            { n: "4", t: "While we [[were running]] (run) in the park, Mary [[fell over]] (fall over)." },
+            { n: "5", t: "At 7.00 Tony [[got]] (get) out of bed, and [[went]] (go) into the bathroom." },
+            { n: "6", t: "While Kate [[was drinking]] (drink) some milk, she [[dropped]] (drop) the glass." },
+            { n: "7", t: "While I [[was listening]] (listen) to music, I [[heard]] (hear) the doorbell." }
+          ] }
+      ] },
+
+    /* ---------------------------------------------------------
+       2 - worksheet_1331279 (1).pdf
+       --------------------------------------------------------- */
+    { id: "2", title: "PAST SIMPLE / PAST CONTINUOUS", sub: "10 sentences with verbs in brackets",
+      sections: [
+        { name: "Worksheet", instr: "", kind: "list",
+          items: [
+            { n: "1",  t: "When I (get) [[got]] up yesterday, the sun (shine) [[was shining]] ." },
+            { n: "2",  t: "While I (cycle) [[was cycling]] past some villages, I (see) [[saw]] some people in their gardens." },
+            { n: "3",  t: "While Tom (play) [[was playing]] the piano, his mother (do) [[was doing]] the washing-up." },
+            { n: "4",  t: "while I (drive) [[was driving]] a car, I (see) [[saw]] an accident." },
+            { n: "5",  t: "One man (mow) [[was mowing]] the grass while his wife (pick) [[was picking]] strawberries." },
+            { n: "6",  t: "Yesterday I (go) [[went]] to the Post Office, (buy) [[bought]] some fruit at the supermarket and (read) [[read]] a book in the park in the afternoon." },
+            { n: "7",  t: "At 10 am yesterday, I (sit) [[was sitting]] on a bus." },
+            { n: "8",  t: "While Jimmy (tell) [[was telling]] a joke, his teacher (walk) [[walked]] in." },
+            { n: "9",  t: "My brother (drink) [[drank|was drinking]] while he (do) [[was doing]] his homework." },
+            { n: "10", t: "He (meet) [[met]] his girlfriend while he (live) [[was living|lived]] in London." }
+          ] }
+      ] },
+
+    /* ---------------------------------------------------------
+       3 - worksheet_1665687.pdf
+       --------------------------------------------------------- */
+    { id: "3", title: "PAST SIMPLE VS. PAST CONTINUOUS", sub: "25 sentences + the two boxes",
+      boxesAt: "bottom",
+      boxes: [
+        { title: "PAST SIMPLE", lines: [
+          "Form: Subject + Verb 2.",
+          "• He played tennis yesterday.",
+          "• The children went to the park this morning.",
+          "• Did you see Bob yesterday?",
+          "• They didn't come to the party on Sunday." ] },
+        { title: "PAST CONTINUOUS", lines: [
+          "Form: Subject + was/were + Verb+ing.",
+          "• We were playing tennis at 4 p.m. yesterday.",
+          "• They were eating when we arrived.",
+          "While + PAST CONTINUOUS",
+          "When + PAST SIMPLE" ] }
+      ],
+      sections: [
+        { name: "Worksheet", instr: "Choose the correct verb form in each of the following sentences.", kind: "list",
+          items: [
+            { n: "1",  t: "Mary <<prepared|*was preparing>> lunch when they <<*came|was coming>>." },
+            { n: "2",  t: "Who was that nice girl you <<talked|*were talking>> to when I <<*walked|was walking>> by the pub?" },
+            { n: "3",  t: "Last weekend Susan <<*fell|was falling>> and <<*broke|was breaking>> her leg." },
+            { n: "4",  t: "We <<*drove|were driving>> to Berlin last Sunday." },
+            { n: "5",  t: "The sun <<shone|*was shining>> brightly when I <<*got up|was getting up>> this morning." },
+            { n: "6",  t: "Ann finally <<*told|was telling>> us the story about Peter last month." },
+            { n: "7",  t: "Yesterday Jane <<*fell|was falling>> and <<*hurt|was hurting>> herself while she <<rode|*was riding>> her bicycle." },
+            { n: "8",  t: "Helen <<*wore|was wearing>> her dress to the party last night." },
+            { n: "9",  t: "He <<waited|*was waiting>> for half an hour when they <<*arrived|were arriving>>." },
+            { n: "10", t: "Where was he going when you <<*saw|was seeing>> him?" },
+            { n: "11", t: "She <<talked|*was talking>> to John on the phone when I <<*walked|was walking>> in." },
+            { n: "12", t: "Did she <<*know|knew>> they <<came|*were coming>> to the party?" },
+            { n: "13", t: "How many people were sitting in the waiting room when you <<*arrived|were arriving>>?" },
+            { n: "14", t: "I met them in the street while I <<shopped|*was shopping>>." },
+            { n: "15", t: "The postman arrived while I <<left|*was leaving>> the house." },
+            { n: "16", t: "We <<walked|*were walking>> down by the river when it <<*started|was starting>> to rain." },
+            { n: "17", t: "The storm started while we <<drove|*were driving>> back from London." },
+            { n: "18", t: "They met when they <<*worked|*were working>> in Paris." },
+            { n: "19", t: "What time <<*did she arrive|was she arriving>> last night?" },
+            { n: "20", t: "He <<*broke|was breaking>> his foot while he was playing football on Saturday." },
+            { n: "21", t: "I <<*cut|was cutting>> my finger while I <<chopped|*was chopping>> vegetables." },
+            { n: "22", t: "The plane <<*left|was leaving>> over an hour ago." },
+            { n: "23", t: "I <<drove|*was driving>> fast when I was flashed by the speed camera." },
+            { n: "24", t: "What <<*were you doing|*did you do>> at 8 p.m. yesterday?" },
+            { n: "25", t: "My parents <<*went|were going>> to several concerts while they <<*stayed|*were staying>> in Paris." }
+          ] }
+      ] },
+
+    /* ---------------------------------------------------------
+       4 - worksheet_1839413.pdf
+       El PDF no tiene titulo: "Past simple" y "Past continuous" son los
+       encabezados de la tabla.
+       --------------------------------------------------------- */
+    { id: "4", title: "PAST SIMPLE / PAST CONTINUOUS", sub: "The table: 15 + 15",
+      boxesAt: "top",
+      boxes: [
+        { title: "PAST SIMPLE", lines: [
+          "* REGULAR VERB ↓",
+          "~S + V + ED",
+          "You cooked pizza yesterday.",
+          "* IRREGULAR VERB ↓",
+          "~S + V 2ªCOLUMNA",
+          "You ate pizza yesterday." ] },
+        { title: "PAST CONTINUOUS", lines: [
+          "~S + WAS/WERE + V-ING",
+          "I was eating pizza at home.",
+          "You were eating pizza at home." ] }
+      ],
+      note: "En el pasado, NO se pone s en la 3ª persona.",
+      sections: [
+        { name: "Table", instr: "", kind: "table2",
+          cols: ["Past simple", "Past continuous"],
+          rows: [
+            { n: "1",  l: "I [[listened]] (listen) to music every day ^^when I was 8^^.",
+                        r: "I [[was listening]] (listen) to music ^^for three hours^^." },
+            { n: "2",  l: "You [[watched]] (watch) TV ^^last night^^.",
+                        r: "You [[were watching]] (watch) TV ^^with a friend^^." },
+            { n: "3",  l: "He [[used]] (use) the cellphone ^^on Monday^^.",
+                        r: "He [[was using]] (use) the cellphone ^^in class^^." },
+            { n: "4",  l: "She [[played]] (play) volleyball ^^yesterday^^.",
+                        r: "She [[was playing]] (play) volleyball ^^in the park^^." },
+            { n: "5",  l: "It [[rained]] (rain) ^^last week^^.",
+                        r: "It [[was raining]] (rain) ^^a lot^^." },
+            { n: "6",  l: "We [[wore]] (wear) the school uniform ^^to the excursion^^.",
+                        r: "We [[were wearing]] (wear) the school uniform ^^all day^^." },
+            { n: "7",  l: "You [[visited]] (visit) the museum ^^last Wednesday^^",
+                        r: "You [[were visiting]] (visit) the museum ^^with your family^^." },
+            { n: "8",  l: "They [[read]] (read) a new book ^^two days ago^^.",
+                        r: "They [[were reading]] (read) a new book ^^at the library^^." },
+            { n: "9",  l: "Emma [[did]] (do) the homework ^^last night^^.",
+                        r: "Emma [[was doing]] (do) the homework ^^with a pen^^." },
+            { n: "10", l: "Edward [[had]] (have) lunch at school ^^yesterday^^.",
+                        r: "Edward [[was having]] (have) lunch ^^at school^^." },
+            { n: "11", l: "My friend [[rode]] (ride) her bike ^^on Sunday^^.",
+                        r: "My friend [[was riding]] (ride) her bike in the park ^^in the park^^." },
+            { n: "12", l: "My friends [[had|~had dinner]] (have dinner) together ^^last weekend^^.",
+                        r: "My friends [[were having|~were having dinner]] (have dinner) together ^^at McDonalds^^." },
+            { n: "13", l: "John and Brenda [[did]] (do) gym ^^three days ago^^.",
+                        r: "John and Brenda [[were doing]] (do) gym ^^at the sports centre^^." },
+            { n: "14", l: "My mum [[cooked]] (cook) pizza ^^last Friday^^.",
+                        r: "My mum [[was cooking]] (cook) pizza ^^in the kitchen^^." },
+            { n: "15", l: "My dad [[washed]] (wash) his car ^^yesterday^^.",
+                        r: "My dad [[was washing]] (wash) his car ^^with a sponge^^." }
+          ] }
+      ] },
+
+    /* ---------------------------------------------------------
+       5 - worksheet_2223761.pdf  (2 paginas)
+       --------------------------------------------------------- */
+    { id: "5", title: "REVIEW TEST 2 - PAST SIMPLE - PAST CONTINUOUS", sub: "Four parts: A, B, C and D",
+      sections: [
+        { name: "Part A", instr: "A. COMPLETE THE SENTENCES WITH THE PAST SIMPLE OR THE PAST CONTINUOUS FORM OF THE VERBS IN BRACKETS.", kind: "list",
+          items: [
+            { n: "1",  t: "What [[were you doing|did you do]] (you / do) when I [[called]] (call) you last night?" },
+            { n: "2",  t: "I [[was sitting]] (sit) in a café when you [[called]] (call)." },
+            { n: "3",  t: "When you [[arrived]] (arrive) at the party, who [[was]] (be) there?" },
+            { n: "4",  t: "Susie [[was watching]] (watch) a film when she [[heard]] (hear) the noise." },
+            { n: "5",  t: "Yesterday I [[went]] (go) to the library, next I [[had]] (have) a swim, later I [[met]] (meet) Julie for a coffee." },
+            { n: "6",  t: "We [[were playing]] (play) tennis when John [[hurt]] (hurt) his ankle." },
+            { n: "7",  t: "What [[were they doing|did they do]] (they / do) at 10pm last night? It [[was]] (be) really noisy." },
+            { n: "8",  t: "He [[was taking]] (take) a shower when the telephone [[rang]] (ring)." },
+            { n: "9",  t: "He [[was reading]] (read) when the telephone [[rang]] (ring)." },
+            { n: "10", t: "When I [[walked]] (walk) into the room, everyone [[was working|~were working]] (work)." }
+          ] },
+        { name: "Part B", instr: "B. WRITE QUESTIONS WITH THE PAST SIMPLE.", kind: "write",
+          items: [
+            { n: "1", p: "When / you / buy / that tablet / ?",          a: ["When did you buy that tablet"] },
+            { n: "2", p: "How much / your new computer / cost / ?",     a: ["How much did your new computer cost"] },
+            { n: "3", p: "What / you / do / after school yesterday / ?",a: ["What did you do after school yesterday"] },
+            { n: "4", p: "Why / you / not / call me last night / ?",    a: ["Why didn't you call me last night", "Why did you not call me last night"] }
+          ] },
+        { name: "Part C", instr: "C. CHOOSE THE CORRECT OPTIONS.", kind: "list",
+          items: [
+            { n: "1",  t: "I <<listened|*was listening>> to the radio when I <<*heard|was hearing>> this fantastic song." },
+            { n: "2",  t: "When the teacher <<*said|was saying>> ‘Stop!’, I still <<tried|*was still trying>> to finish the last question." },
+            { n: "3",  t: "I feel really silly! While I <<danced|*was dancing>>, I <<*fell|was falling>> and <<*broke|was breaking>> my elbow." },
+            { n: "4",  t: "Tim <<played|*was playing>> a computer game when his mum <<*called|was calling>> him for lunch." },
+            { n: "5",  t: "I <<looked|*was looking>> for a file on my memory stick when I <<*noticed|was noticing>> there was a virus." },
+            { n: "6",  t: "Ron <<*found|was finding>> a really interesting website about dance music while he <<surfed|*was surfing>> the internet." },
+            { n: "7",  t: "My mum <<had|*was having>> breakfast near the computer when she <<*spilled|was spilling>> her cup of coffee on the keyboard." },
+            { n: "8",  t: "When you <<*saw|were seeing>> me yesterday, I <<*didn't go|wasn't going>> to school, I <<was going|*went>> to the doctor’s – I felt terrible." },
+            { n: "9",  t: "How many pictures <<*did you take|were you taking>> while you <<travelled|*were travelling>> around Ireland?" },
+            { n: "10", t: "Why <<did you chat|*were you chatting>> to Philip while I <<tried|*was trying>> to tell you something really important?" }
+          ] },
+        { name: "Part D", instr: "D. COMPLETE THE STORY WITH THE CORRECT PAST TENSE FORM OF THE VERBS IN BRACKETS.", kind: "para",
+          paras: [
+            "Sometimes I hate computers! Once, when I [[was trying]] (try) to do my English homework on my laptop, the battery [[ran out]] (run out). I [[was lying]] (lie) on my bed and I was listening to music on Spotify. It helps me to concentrate. I also [[was chatting|chatted]] (chat) to my friend Daniel on Facebook. OK, so I [[wasn't concentrating|didn't concentrate]] (not concentrate) very hard on my homework and I [[forgot]] (forget) to plug in my laptop!I didn't notice that the battery was getting low. I was just finishing the essay when the screen [[went]] (go) black. I [[lost]] (lose) everything. I [[screamed]] (scream) in frustration. My dad [[came]] (come) running into my bedroom. I almost [[cried]] (cry) so he [[gave]] (give) me his laptop. I [[tried|was trying]] (try) to remember everything in my essay – it [[was]] (be) quite difficult especially because Daniel was sending me lots of funny videos. Anyway, while I was watching one, the WiFi stopped working. In the end it was probably better because I [[managed]] (manage) to finish the essay"
+          ] }
+      ] },
+
+    /* ---------------------------------------------------------
+       6 - worksheet_2237625 (1).pdf
+       Los ejemplos (el item 1 de cada parte) vienen ya resueltos en el
+       PDF: se muestran resueltos y no puntuan.
+       --------------------------------------------------------- */
+    { id: "6", title: "PAST CONTINUOUS vs SIMPLE PAST", sub: "Four parts, with solved examples",
+      sections: [
+        { name: "Part 1", instr: "COMPLETE THE SENTENCES. USE THE PAST CONTINUOUS FORM OF THE VERBS IN BRACKETS", kind: "list",
+          items: [
+            { n: "1", ex: true, t: "My father {{was cooking}} (cook) lunch when I got home." },
+            { n: "2", t: "The plane [[was flying]] (fly) to Paris when it crashed." },
+            { n: "3", t: "The students [[were waiting]] (wait) for the bus when it started to rain." },
+            { n: "4", t: "We [[were crossing]] (cross) the street when the traffic lights turned red." },
+            { n: "5", t: "Sue [[was washing]] (wash) the dishes when the phone rang." },
+            { n: "6", t: "Mary [[was slicing]] (slice) the bread when she cut her hand." }
+          ] },
+        { name: "Part 2", instr: "CHOOSE THE CORRECT ALTERNATIVE IN EACH SENTENCE.", kind: "list",
+          items: [
+            { n: "1", ex: true, t: "Jim {{was breaking / ::broke}} his leg while he was playing golf." },
+            { n: "2", t: "She <<*was surfing|surfed>> when the shark attacked her." },
+            { n: "3", t: "While I <<had|*was taking>> a shower, my cell phone rang." },
+            { n: "4", t: "Anna <<was calling|*called>> Judy while she was reading a newspaper." },
+            { n: "5", t: "Someone <<was taking|*took>> Peter’s bag while he was making a phone call." },
+            { n: "6", t: "Maria was walking home when a burglar <<was stealing|*stole>> her purse." }
+          ] },
+        { name: "Part 3", instr: "PUT THE VERBS IN BRACKETS INTO THE SIMPLE PAST OR PAST CONTINUOUS.", kind: "list",
+          items: [
+            { n: "1", ex: true, t: "My father {{was driving}} (drive) his car when a policeman {{stopped}} (stop) him." },
+            { n: "2", t: "Two boys [[were playing]] (play) soccer when the teacher [[came]] (come) into the classroom." },
+            { n: "3", t: "I [[was running]] (run) to the park when I [[heard]] a terrible noise (hear)." },
+            { n: "4", t: "While Tony [[was cleaning]] (clean) the bathroom, his son [[was shouting|shouted]] (shout) in the kitchen." },
+            { n: "5", t: "My son [[broke]] (break) his pencil while he [[was doing]] (do) his homework." },
+            { n: "6", t: "I [[was waiting]] (wait) for my friend when the bus [[arrived]] (arrive)." }
+          ] },
+        { name: "Part 4", instr: "CHOOSE THE CORRECT ALTERNATIVE (WHEN – WHILE).", kind: "list",
+          items: [
+            { n: "1", ex: true, t: "I has a bad dream {{WHILE}} I was sleeping on the sofa." },
+            { n: "2", t: "Karina was doing her homework <<*when|while>> the lights went out." },
+            { n: "3", t: "I was talking to my husband in the park <<*when|while>> two cars crashed behind us." },
+            { n: "4", t: "You called me last night <<when|*while>> I was studying for an important exam." },
+            { n: "5", t: "My mother found some old photographs <<when|*while>> she was cleaning her room." },
+            { n: "6", t: "The students were doing an exercise <<*when|while>> the bell rang." }
+          ] }
+      ] },
+
+    /* ---------------------------------------------------------
+       7 - worksheet_49300.pdf
+       --------------------------------------------------------- */
+    { id: "7", title: "PAST SIMPLE / PAST CONTINUOUS", sub: "Two boxes + two word banks",
+      boxesAt: "top",
+      boxes: [
+        { title: "Past Simple", lines: [
+          "We use Past Simple to express:",
+          "○ an action that happened at a definite time in the past",
+          "○ actions that happened immediately one after the other in the past" ] },
+        { title: "Past Continuous", lines: [
+          "We use Past Continuous to express:",
+          "○ an action that was in progress at a stated time in the past",
+          "○ two actions that were happening at the same time",
+          "○ an action that was in progress (longer action) when another action interrupted it" ] }
+      ],
+      sections: [
+        { name: "Part 1", instr: "Fill in the blanks with the Past Simple form of the verbs below.", kind: "list",
+          bank: "work, can see, celebrate, lock, meet, leave, put, play, want, look, invite, do, spend, take, be, wear",
+          bankAt: "below",
+          items: [
+            { n: "1",  t: "James [[wanted]] to earn some extra money last summer, so he [[worked]] part-time at his mother's restaurant." },
+            { n: "2",  t: "Mary and Kevin [[celebrated]] their wedding anniversary in grand style. They [[invited]] more than a hundred guests." },
+            { n: "3",  t: "We [[took]] the morning bus to Bournemouth and we [[spent]] the whole day at the beach." },
+            { n: "4",  t: "Suzie [[left]] a note for her mother, [[put]] on her coat and [[locked]] the door." },
+            { n: "5",  t: "Who [[did your father play|~did play]] (your father) squash with last weekend?" },
+            { n: "6",  t: "I [[was]] very busy last night. I'm sorry but I [[didn't|did not]] (not) phone you." },
+            { n: "7",  t: "Why [[didn't you wear|did you not wear]] (you/not) that black strapless dress at the party?" },
+            { n: "8",  t: "Alex [[did]] his homework at the lunch break." },
+            { n: "9",  t: "Paul and I [[met]] at the cybercafé yesterday afternoon." },
+            { n: "10", t: "Helen [[looked]] through the peephole but [[saw]] nobody." }
+          ] },
+        { name: "Part 2", instr: "Fill in the blanks with the Past Continuous form of the verbs above.", kind: "list",
+          bank: "sit, watch, make, wash, set, walk, prepare, talk, do, have, work, dust, sleep, build, shine",
+          bankAt: "above",
+          items: [
+            { n: "1",  t: "Lucy broke the glass figurine while she [[was dusting]] the sitting room." },
+            { n: "2",  t: "My little brother [[was building]] a tower with his favourite blocks while I [[was working]] on my science project." },
+            { n: "3",  t: "Tracy and I [[were sitting]] at the table and [[were talking]] to Pete when Jack came in." },
+            { n: "4",  t: "What [[were they doing]] (they) this time last Sunday? They [[were watching]] a comedy they hired from the video club." },
+            { n: "5",  t: "At 6 yesterday morning I [[wasn't walking|was not walking]] (not) my dog. I [[was sleeping]] soundly in my bed." },
+            { n: "6",  t: "[[Weren't you washing|Were you not washing]] (you/not) the car when it started to rain?" },
+            { n: "7",  t: "The pupils [[were having]] a break when the headmaster announced the winner of the Spelling Bee Contest." },
+            { n: "8",  t: "My grandparents [[were making]] spaghetti while I [[was setting]] the table." },
+            { n: "9",  t: "Rick [[was preparing|was building|was making]] a model of a big wheel for the technology project." },
+            { n: "10", t: "[[Was the sun shining]] (the sun) when you went on an excursion to Brighton last week?" }
+          ] }
+      ] },
+
+    /* ---------------------------------------------------------
+       8 - worksheet_588373 (1).pdf  (2 paginas)
+       La parte C ("Select the right answer") viene en el PDF con el
+       hueco en blanco y SIN opciones: se ofrecen when / while / as, que
+       son las que aparecen en el resto de la hoja.
+       --------------------------------------------------------- */
+    { id: "8", title: "Past Simple and Past Continuous", sub: "YouTube, Captain Cook and more",
+      sections: [
+        { name: "Part A", instr: "", lead: "YouTube", kind: "para",
+          paras: [
+            "In 2005, three young men, Chad Hurley, Steve Chan and Jawed Karim [[established]] (establish) the website 'YouTube.' The men [[met]] (meet) while they [[were working]] (work) at another Internet company. They [[were sharing]] (share) ideas about the Internet when they [[realised|~realized]] (realise) that it was not easy to post and share video clips on the Internet. So, the men [[decided]] (decide) to create a website to do exactly that. In February 2005, they [[registered]] (register) youtube.com and [[went]] (go) online. YouTube [[became]] (become) an instant success as it was user-friendly with a modern design.",
+            "Everyday, while more and more people [[were uploading|uploaded]] (upload) videos to the site, even more people [[were watching|watched]] (watch) the videos. After only a few months online, YouTube videos [[attracted]] (attract) more than 130 million viewers. In 2006, the three founders of YouTube [[sold]] (sell) their company to Google for 1.65 billion US dollars! YouTube is the third most visited website on the Internet after Google and Facebook!"
+          ] },
+        { name: "Part B", instr: "Complete with past simple or continuous", kind: "list",
+          items: [
+            { n: "1",  t: "When it [[stopped]] (stop) raining, we [[went out]] (go out) and [[put]] (put) the kayak in the water." },
+            { n: "2",  t: "While I [[was waiting]] (wait) at the bus stop, I [[saw]] (see) an accident." },
+            { n: "3",  t: "Suddenly, the man [[took]] (take) the purse from the woman's handbag and [[ran off]] (run off)." },
+            { n: "4",  t: "At 5 p.m. yesterday, I [[was reading]] (read) a book about Captain Cook and my sister [[was watching]] (watch) a film about the explorer Robert Falcon Scott." },
+            { n: "5",  t: "I [[was relaxing]] (relax) in the sun when a cloud [[appeared]] (appear) in the sky." },
+            { n: "6",  t: "When the sailor [[opened]] (open) the box, he [[found]] (find) an old map inside." },
+            { n: "7",  t: "While everyone [[was arguing]] (argue), I [[realised|~realized]] (realise) it was a good time to go." },
+            { n: "8",  t: "As I [[was leaving]] (leave) the party, I finally [[remembered]] (remember) the man's name." },
+            { n: "9",  t: "The man [[was wearing]] (wear) a raincoat and [[was carrying]] (carry) a big suitcase." },
+            { n: "10", t: "The girl [[was running]] (run) through the forest when she [[slipped]] (slip) over." },
+            { n: "11", t: "The boy [[was sitting]] (sit) on a bench in the park while he [[was reading]] (read) a book." },
+            { n: "12", t: "The policeman [[noticed]] (notice) the blood on the floor when he first [[entered]] (enter) the room." },
+            { n: "13", t: "I [[saw]] (see) the money on the ground as I [[was walking]] (walk) to school." }
+          ] },
+        { name: "Part C", instr: "Select the right answer", kind: "list",
+          items: [
+            { n: "1",  t: "Jack fell asleep <<when|*while|*as>> he was watching a film." },
+            { n: "2",  t: "We went out <<*when|while|*as>> the rain stopped." },
+            { n: "3",  t: "Ann was driving <<*when|while|*as>> the accident happened." },
+            { n: "4",  t: "I was walking, <<*when|while|as>> I remembered it was mum's birthday!" },
+            { n: "5",  t: "They were listening to the radio <<when|*while|*as>> they were making breakfast." },
+            { n: "6",  t: "Paul bought a ticket <<*when|while|*as>> he got to the station." },
+            { n: "7",  t: "<<*When|While|*As>> I heard the doorbell, I went to the door." },
+            { n: "8",  t: "<<When|*While|*As>> we were standing outside the cinema, someone picked my pocket." },
+            { n: "9",  t: "They lived in Germany <<*when|*while|as>> they were young." },
+            { n: "10", t: "<<When|*While|*As>> we were walking home, we saw a signpost for a town called Hell." }
+          ] },
+        { name: "Part D", instr: "", kind: "para",
+          paras: [
+            "My cousin Jake went to Australia last year. He was staying in Melbourne <<*when|while>> he decided to go to Lake Eyre in the Australian Outback. He was driving through the outback <<*when|*as>> he saw a sign for William Creek, the smallest town in Australia.",
+            "<<*When|While>> he got to the town, he saw a petrol station, a car park and a hotel. There was even a small museum. The hotel was open, so he had something to eat.",
+            "He was talking to some local people <<when|*while>> he was having his lunch. They were telling him stories about the outback <<*when|while>> they heard a strange noise.",
+            "<<*As|*When>> they were looking under the table, something crawled out of Jake's bag. It was a scorpion!"
+          ] },
+        { name: "Part E", instr: "", lead: "Captain Cook", kind: "para",
+          paras: [
+            "The British explorer James Cook [[was]] (be) born in the village of Marton, Yorkshire, on 27 October, 1728. But his family soon [[moved]] (move) to another village, where Cook [[spent]] (spend) most of his childhood.",
+            "As a teenager James Cook [[developed]] (develop) a fascination for the sea and [[travelled|~traveled]] (travel) to Whitby where he [[found]] (find) employment on a coal ship. While he [[was serving]] (serve) in the Royal Navy during the Seven Years' War, Cook [[had]] (have) the command of a ship.",
+            "In 1769, while he [[was sailing]] (sail) across the south Pacific Ocean, the famous British explorer Captain James Cook, [[opened]] (open) a secret letter from the British government and [[read]] (read) the instructions. The letter told him to find the unexplored continent of Terra Australis.",
+            "When Cook [[reached]] (reach) the islands of what is now New Zealand, he [[made]] (make) the first good maps of the coast.",
+            "Then, in April 1770, he [[sailed]] (sail) west to the south-east coast of Australia. As his [[ship was travelling|~ship was traveling|ship travelled|~ship traveled]] (travel) along the coast, Cook [[gave]] (give) names to the strange, new places.",
+            "One day, when his men [[got]] (get) off the ship at a beautiful bay, they [[found]] (find) a lot of interesting animals and plants, so Cook [[called]] (call) the place Botany Bay. And while [[they were repairing|his men were repairing|~the men were repairing|~his crew were repairing]] (repair) the ship near a river, Cook [[named]] (name) the river after his ship, the Endeavour. Today, the Endeavour river reaches the Australian coast at a town called Cooktown, which is named after the explorer himself.",
+            "His last voyage for the Royal Society [[took]] (take) him to the west coast of North America where he [[tried|was trying]] (try) to find a passage between the Atlantic and Pacific.",
+            "While he and his crew [[were resting]] (rest) in Hawaii, some Hawaiians [[stole]] (steal) one of his boats. When cook and his men [[tried|were trying]] (try) to get the boat back from the natives, a violent fight [[broke out]] (break out) in which the natives [[stabbed]] (stab) James Cook to death.",
+            "His crew [[buried]] (bury) the remains of Cook's body in Kealakekua Bay on 22nd February 1779."
+          ] }
+      ] }
+  ]
+};
+
+</script>
+<script id="logic-block">
+/* ============================================================
+   LOGICA - funciones puras, SIN DOM
+   ============================================================
+   Lo usan el motor (engine) y el verificador de Node. Vive aparte para
+   que Node pueda probar exactamente el mismo codigo que corre en el
+   navegador, sin imitarlo.
+   ============================================================ */
+var LOGIC = (function(){
+  "use strict";
+
+  /* Para comparar lo que escribio el alumno con las respuestas.
+     - minusculas, apostrofe curvo -> recto
+     - n't se expande ("wasn't" == "was not"), asi no hace falta escribir
+       las dos formas en cada respuesta
+     - se saca la puntuacion y los espacios de mas */
+  function norm(s){
+    var t = String(s).toLowerCase().replace(/[‘’ʼ]/g, "'");
+    t = t.replace(/\bwon't\b/g, "will not").replace(/\bcan't\b/g, "can not")
+         .replace(/n't\b/g, " not");
+    t = t.replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
+    return t;
+  }
+
+  /* [[a|b|~c]]   a y b se aceptan y se muestran; c se acepta pero NO se
+     muestra (variantes de ortografia: traveled, realized...) */
+  function parseGap(raw){
+    var parts = raw.split("|"), accept = [], show = [], seen = {};
+    for(var i = 0; i < parts.length; i++){
+      var p = parts[i], hidden = false;
+      if(p.charAt(0) === "~"){ hidden = true; p = p.slice(1); }
+      accept.push(p);
+      var k = norm(p);
+      if(!hidden && !seen[k]){ seen[k] = true; show.push(p); }
+    }
+    return { accept: accept, show: show };
+  }
+
+  /* <<x|*y>>   las que llevan * son las correctas */
+  function parseChoice(raw){
+    var parts = raw.split("|"), opts = [], show = [];
+    for(var i = 0; i < parts.length; i++){
+      var p = parts[i], ok = false;
+      if(p.charAt(0) === "*"){ ok = true; p = p.slice(1); }
+      opts.push({ t: p, ok: ok });
+      if(ok) show.push(p);
+    }
+    return { opts: opts, show: show };
+  }
+
+  var TOK = /\[\[(.+?)\]\]|<<(.+?)>>|\{\{(.+?)\}\}|\^\^(.+?)\^\^/g;
+
+  /* Parte un texto en piezas:
+     {k:"t"} texto, {k:"g"} hueco, {k:"c"} opciones, {k:"x"} ejemplo,
+     {k:"h"} frase resaltada */
+  function tokenize(s){
+    var out = [], last = 0, m;
+    TOK.lastIndex = 0;
+    while((m = TOK.exec(s)) !== null){
+      if(m.index > last) out.push({ k: "t", s: s.slice(last, m.index) });
+      if(m[1] !== undefined){
+        var g = parseGap(m[1]);
+        out.push({ k: "g", accept: g.accept, show: g.show });
+      } else if(m[2] !== undefined){
+        var c = parseChoice(m[2]);
+        out.push({ k: "c", opts: c.opts, show: c.show });
+      } else if(m[3] !== undefined){
+        out.push({ k: "x", s: m[3] });
+      } else {
+        out.push({ k: "h", s: m[4] });
+      }
+      last = TOK.lastIndex;
+    }
+    if(last < s.length) out.push({ k: "t", s: s.slice(last) });
+    return out;
+  }
+
+  /* gap: ¿lo que escribio coincide con alguna respuesta aceptada? */
+  function gapOk(accept, typed){
+    var v = norm(typed);
+    if(!v) return false;
+    for(var i = 0; i < accept.length; i++){
+      if(norm(accept[i]) === v) return true;
+    }
+    return false;
+  }
+
+  /* choice: ¿la opcion elegida (indice) es correcta? */
+  function choiceOk(opts, idx){
+    return idx >= 0 && idx < opts.length && opts[idx].ok === true;
+  }
+
+  return { norm: norm, tokenize: tokenize, gapOk: gapOk, choiceOk: choiceOk,
+           parseGap: parseGap, parseChoice: parseChoice };
+})();
+
+</script>
+<script id="report-block">
+/* ============================================================
+   ENTREGA DE RESULTADOS A LA DOCENTE
+   ============================================================
+   Un solo modulo para todas las paginas de un sitio de ejercicios.
+   NO toca el motor de los ejercicios: espera a que el alumno
+   corrija y despues LEE LA PANTALLA (los marcadores, los carteles
+   de error, los campos pintados de rojo).
+
+   Por que asi: un sitio suele tener varios motores escritos en
+   momentos distintos. Engancharse a cada uno son N integraciones
+   y N maneras de romperse. Leyendo el DOM hay una sola.
+
+   Si todas las paginas viven en el mismo dominio, cada parada
+   queda guardada en el navegador y el indice puede mandar el
+   acumulado.
+
+   El envio va a un Web App de Apps Script: escribe una fila en la
+   planilla y le manda el mail a la docente que el alumno elige.
+   ============================================================ */
+window.initReport = function(HOST){
+"use strict";
+
+/* ============================================================
+   CONFIGURACION - es lo unico que hay que tocar para otro sitio
+   ============================================================ */
+var CONFIG = {
+
+  /* La URL del Web App, terminada en /exec. Mientras este vacia la
+     tarjeta muestra solo el boton de copiar: se puede publicar asi. */
+  url: "https://script.google.com/macros/s/AKfycbz4mC6wlKjs_tQHfEjCxDOfbYjYAzDui3pZFttOfFgpxhd4WpLmaE-2WRsJ_edVPz3-ow/exec",
+
+  /* A quien puede entregar el alumno. El ve el nombre; lo que viaja es
+     el mail, y el script del otro lado SOLO acepta estos. */
+  docentes: [
+    { nombre: "Miss Ani",    mail: "anabella_ld@buber.edu.ar" },
+    { nombre: "Miss Aldi",   mail: "aferrari@buber.edu.ar" },
+    { nombre: "Miss Flower", mail: "florrafalowicz@buber.edu.ar" }
+  ],
+
+  /* Lista cerrada: asi la planilla se puede filtrar, en vez de tener
+     "6-1", "6 1" y "sexto 1" como cursos distintos. */
+  cursos: ["5-1", "5-2", "5-3"],
+
+  /* Donde mirar. Esto es lo que cambia entre un sitio y otro:
+     ver references/contrato-dom.md */
+  sel: {
+    wrap:        ".screen",        /* (no se usa: cada instancia recibe su pantalla) */
+    antesDe:     "",
+    home:        "",
+    marcador:    ".scoreline",     /* un "3 / 5" suelto */
+    medalla:     ".medal",         /* marcador CON nombre de la parte */
+    medallaNom:  ".mt",
+    medallaPunt: ".ms",
+    insignia:    "",
+    error:       ".exp.wrong",     /* cartel de una respuesta incorrecta */
+    solucion:    ".sol",           /* adentro del cartel: la respuesta */
+    item:        ".item",          /* el bloque de un ejercicio */
+    numero:      ".rn",            /* el numerito del item */
+    marcadoMal:  ".rpwas"          /* lo que escribio el alumno (un span por hueco) */
+  },
+
+  /* "Answer: " y similares se sacan del texto de la solucion */
+  prefijoSolucion: /^(answer|respuesta)\s*:\s*/i,
+
+  /* Todo lo que ve el alumno. Cambiar de idioma es cambiar esto. */
+  t: {
+    tag:        "Your report",
+    titulo:     "Send your result to your teacher",
+    tituloHome: "Send your work to your teacher",
+    copete:     "Check your answers first. Then write your name, choose your class & your teacher and then press the button.",
+    copeteHome: "This is everything you have done on this computer. Write your name, choose your class & your teacher and then press the button.",
+    soloCopia:      "Your report",
+    copeteCopia:    "Check your answers first, then write your name and copy your report to give it to your teacher.",
+    nombre:     "Name",
+    phNombre:   "Your name",
+    curso:      "Class",
+    elegirCurso:"Choose your class",
+    docente:    "Teacher",
+    elegirDoc:  "Choose your teacher",
+    enviar:     "Send to my teacher",
+    enviarOtra: "Send my new result",
+    enviado:    "Sent",
+    copiar:     "Copy my report",
+    atajo:      "Send this to my teacher",
+    letraChica: "Only your name, your class and your answers go to the teacher you choose. Nothing else.",
+    faltaNombre:"Write your name first.",
+    faltaCurso: "Choose your class first.",
+    faltaDoc:   "Choose your teacher first.",
+    nadaAun:    "There is nothing to send yet. Check your answers first.",
+    mandando:   "Sending...",
+    ok:         "Sent to $. If you do more, the button comes back.",
+    sinConfirmar:"It could not be confirmed, so check with your teacher.",
+    repetido:   "You just sent this one. Wait a moment before sending it again.",
+    rechazado:  "The teacher's list did not take it. Tell your teacher.",
+    fallo:      "It did not go. Press the button again, or copy your report and give it to your teacher.",
+    copiado:    "Copied. Now give it to your teacher the way she asks you to.",
+    noCopiado:  "Your report could not be copied. Tell your teacher.",
+    miraOtraVez:"To look at again:",
+    escribio:   "wrote:",
+    correcto:   "right:"
+  }
+};
+
+/* ============================================================
+   DE ACA PARA ABAJO no hace falta tocar nada para un sitio nuevo
+   ============================================================ */
+var S = CONFIG.sel, T = CONFIG.t;
+var PUEDE_ENVIAR = !!CONFIG.url;
+var KEY = "entrega.resultados.v1";
+var wrap = HOST.root;
+if(!wrap) return;
+
+/* ---------- memoria del navegador, siempre con red ----------
+   localStorage tira SecurityError con file:// y con data: URL, asi que
+   todo va envuelto: la tarjeta tiene que andar igual. */
+function leer(){
+  try{
+    var raw = window.localStorage.getItem(KEY);
+    var o = raw ? JSON.parse(raw) : null;
+    if(!o || typeof o !== "object") o = {};
+    if(!o.stops) o.stops = {};
+    return o;
+  }catch(e){ return { stops: {} }; }
+}
+function guardar(o){
+  try{ window.localStorage.setItem(KEY, JSON.stringify(o)); }catch(e){}
+}
+
+function slug(){
+  var p = window.location.pathname.split("/").pop() || "index.html";
+  return p.replace(/\.html?$/i, "") || "index";
+}
+var SLUG = HOST.slug;
+/* El indice se reconoce por lo que tiene en pantalla, no por el nombre del
+   archivo: abierto desde un pendrive la URL no sirve de nada. */
+var ES_HOME = !!HOST.home;
+function tituloPagina(){
+  return HOST.title;
+}
+function texto(n){ return n ? String(n.textContent).replace(/\s+/g, " ").trim() : ""; }
+function parseScore(s){
+  var m = /(\d+)\s*\/\s*(\d+)/.exec(s || "");
+  return m ? { got: parseInt(m[1], 10), total: parseInt(m[2], 10) } : null;
+}
+
+/* ============================================================
+   LEER LA PANTALLA
+   ============================================================ */
+function numeroDe(caja){
+  var it = (caja.closest && S.item) ? caja.closest(S.item) : null;
+  if(it){
+    var rn = S.numero ? it.querySelector(S.numero) : null;
+    if(rn) return { n: texto(rn), cont: it };
+  }
+  /* cartel en un panel numerado abajo del texto */
+  var pi = caja.parentNode;
+  if(pi && pi.className && String(pi.className).indexOf("expitem") >= 0){
+    return { n: texto(pi.querySelector(".en")), cont: null };
+  }
+  return { n: "", cont: null };
+}
+function loQueEscribio(cont, n, tarjeta){
+  var partes = [], i;
+  var malos = (cont && S.marcadoMal) ? cont.querySelectorAll(S.marcadoMal) : [];
+  for(i = 0; i < malos.length; i++){
+    /* un boton de opcion (el tiempo elegido en el paso 1) tiene .value
+       pero esta vacio: lo que importa es lo que dice el boton */
+    var esOpcion = malos[i].tagName === "BUTTON" && malos[i].classList.contains("pickbtn");
+    var v = esOpcion ? texto(malos[i]) : (malos[i].value !== undefined ? malos[i].value : texto(malos[i]));
+    partes.push(String(v).trim() || "-");
+  }
+  if(partes.length) return partes.join(" + ");
+  /* si el cartel vive en un panel, se busca el item por su numero */
+  if(!cont && tarjeta && n){
+    var marcas = tarjeta.querySelectorAll(".rn, .sn, .gn");
+    for(i = 0; i < marcas.length; i++){
+      if(texto(marcas[i]) !== n) continue;
+      var padre = marcas[i].parentNode;
+      if(padre && padre.className && String(padre.className).indexOf("schip") >= 0){
+        /* ficha que guarda su respuesta en .value; el texto va despues del
+           numerito, y el numerito se saca por su LARGO: una expresion como
+           /^\d+/ se comeria una ficha que diga "2019" */
+        var val = String(padre.value || "").trim();
+        var etiqueta = texto(padre);
+        var sn = padre.querySelector(".sn");
+        if(sn) etiqueta = etiqueta.slice(texto(sn).length).trim();
+        return val ? (val + " " + etiqueta) : "-";
+      }
+      /* Texto corrido con huecos: el input es el hermano que sigue al numerito.
+         Sin esto se leian TODOS los inputs en rojo del texto y cada renglon del
+         informe mostraba los errores de los demas. */
+      var sig = marcas[i].nextElementSibling;
+      if(sig && sig.tagName === "INPUT"){
+        return String(sig.value || "").trim() || "-";
+      }
+      /* Varios huecos en una misma linea de conversacion: se lee SOLO el grupo
+         de opciones de este numero, no toda la linea. */
+      var caja2 = (padre && String(padre.className).indexOf("optgroup") >= 0)
+        ? padre : (padre ? padre.parentNode : null);
+      var ins = caja2 ? caja2.querySelectorAll("input.no, .pickbtn.bad") : [];
+      if(ins.length){
+        var out = [];
+        for(var k = 0; k < ins.length; k++){
+          var vv = ins[k].value !== undefined && ins[k].value !== "" ? ins[k].value : texto(ins[k]);
+          out.push(String(vv).trim() || "-");
+        }
+        return out.join(" + ");
+      }
+    }
+  }
+  return "-";
+}
+function mirarPantalla(){
+  var partes = [], errores = [], i;
+
+  /* 1. marcadores CON nombre */
+  var medallas = S.medalla ? wrap.querySelectorAll(S.medalla) : [];
+  for(i = 0; i < medallas.length; i++){
+    var nom = texto(medallas[i].querySelector(S.medallaNom));
+    var sc = parseScore(texto(medallas[i].querySelector(S.medallaPunt)));
+    if(nom) partes.push({ name: nom, got: sc ? sc.got : null, total: sc ? sc.total : null });
+  }
+  /* 2. si no hay, cualquier marcador suelto */
+  if(!partes.length && S.marcador){
+    var lineas = wrap.querySelectorAll(S.marcador);
+    for(i = 0; i < lineas.length; i++){
+      var s2 = parseScore(texto(lineas[i]));
+      if(s2) partes.push({ name: "Exercise " + (partes.length + 1), got: s2.got, total: s2.total });
+    }
+  }
+  /* 3. juegos ganados */
+  var insignias = S.insignia ? wrap.querySelectorAll(S.insignia) : [];
+  if(insignias.length){
+    var abiertas = 0;
+    for(i = 0; i < insignias.length; i++){
+      if(String(insignias[i].className).indexOf("hidden") < 0) abiertas++;
+    }
+    partes.push({ name: "Games won", got: abiertas, total: insignias.length });
+  }
+
+  /* 4. los errores, que es lo que le sirve a la docente */
+  var malas = S.error ? wrap.querySelectorAll(S.error) : [];
+  for(i = 0; i < malas.length; i++){
+    var caja = malas[i];
+    var tarjeta = caja.closest ? caja.closest(".card, section") : null;
+    var quien = tarjeta ? texto(tarjeta.querySelector("h2")) : "";
+    var d = numeroDe(caja);
+    var sol = texto(caja.querySelector(S.solucion)).replace(CONFIG.prefijoSolucion, "");
+    var escribio = loQueEscribio(d.cont, d.n, tarjeta);
+    /* un renglon sin respuesta correcta ni respuesta del alumno no le dice
+       nada a nadie: no se informa */
+    if(sol || escribio !== "-"){
+      errores.push({ trial: quien, n: d.n, right: sol, was: escribio });
+    }
+  }
+
+  var got = 0, total = 0;
+  for(i = 0; i < partes.length; i++){
+    if(partes[i].total){ got += partes[i].got || 0; total += partes[i].total; }
+  }
+  /* Entrar a una pagina no es haberla hecho: hasta que no corrige o gana algo
+     no hay nada que contar. */
+  var hizo = (got > 0) || wrap.querySelectorAll(".exp, " + (S.error || ".exp")).length > 0;
+  return { parts: partes, wrong: errores, got: got, total: total, hizo: hizo };
+}
+
+function anotar(){
+  if(ES_HOME) return null;
+  var r = mirarPantalla();
+  if(!r.total || !r.hizo) return r;
+  var o = leer();
+  o.stops[SLUG] = {
+    title: tituloPagina(), got: r.got, total: r.total,
+    parts: r.parts, wrong: r.wrong,
+    when: new Date().toISOString().slice(0, 10)
+  };
+  guardar(o);
+  return r;
+}
+
+/* ============================================================
+   EL TEXTO DEL INFORME
+   ============================================================ */
+function bloque(titulo, d){
+  var L = [], i;
+  L.push(titulo.toUpperCase() + "  -  " + d.got + " / " + d.total);
+  for(i = 0; i < d.parts.length; i++){
+    if(d.parts[i].total) L.push("   " + d.parts[i].name + ": " + d.parts[i].got + " / " + d.parts[i].total);
+  }
+  if(d.wrong && d.wrong.length){
+    L.push("   " + T.miraOtraVez);
+    for(i = 0; i < d.wrong.length; i++){
+      var w = d.wrong[i];
+      L.push("    - " + (w.trial ? w.trial + " " : "") + (w.n ? "(" + w.n + ") " : "")
+             + T.escribio + " " + w.was + "  ->  " + T.correcto + " " + w.right);
+    }
+  }
+  return L.join("\n");
+}
+function informe(){
+  var o = leer(), L = [], k;
+  if(ES_HOME){
+    var hubo = false, got = 0, total = 0;
+    for(k in o.stops){
+      if(Object.prototype.hasOwnProperty.call(o.stops, k)){
+        var d = o.stops[k];
+        L.push(bloque(d.title + "  (" + d.when + ")", d));
+        L.push("");
+        got += d.got; total += d.total;
+        hubo = true;
+      }
+    }
+    if(!hubo) return null;
+    L.unshift("EVERYTHING SO FAR: " + got + " / " + total + "\n");
+    return { texto: L.join("\n"), got: got, total: total, stop: "Everything so far" };
+  }
+  var r = mirarPantalla();
+  if(!r.total || !r.hizo) return null;
+  return { texto: bloque(tituloPagina(), r), got: r.got, total: r.total, stop: tituloPagina() };
+}
+
+/* ============================================================
+   LA TARJETA
+   ============================================================ */
+var opciones = "", cursos = "", i2;
+for(i2 = 0; i2 < CONFIG.docentes.length; i2++){
+  opciones += '<option value="' + CONFIG.docentes[i2].mail + '">' + CONFIG.docentes[i2].nombre + '</option>';
+}
+for(i2 = 0; i2 < CONFIG.cursos.length; i2++){
+  cursos += '<option value="' + CONFIG.cursos[i2] + '">' + CONFIG.cursos[i2] + '</option>';
+}
+
+var card = document.createElement("section");
+card.className = "card rpcard";
+card.innerHTML =
+  '<span class="tag">' + T.tag + '</span>' +
+  '<h2>' + (PUEDE_ENVIAR ? (ES_HOME ? T.tituloHome : T.titulo) : T.soloCopia) + '</h2>' +
+  '<p class="sub">' + (PUEDE_ENVIAR ? (ES_HOME ? T.copeteHome : T.copete) : T.copeteCopia) + '</p>' +
+  '<div class="rprow">' +
+    '<label>' + T.nombre + '<input type="text" id="rpName" autocomplete="off" placeholder="' + T.phNombre + '"></label>' +
+    (CONFIG.cursos.length ? '<label>' + T.curso + '<select id="rpClass">' +
+      '<option value="">' + T.elegirCurso + '</option>' + cursos + '</select></label>' : "") +
+    (PUEDE_ENVIAR ? '<label>' + T.docente + '<select id="rpTeacher">' +
+      '<option value="">' + T.elegirDoc + '</option>' + opciones + '</select></label>' : "") +
+  '</div>' +
+  /* El informe NO se le muestra al alumno: la tarjeta es nombre, curso,
+     docente y boton. El de copiar nace escondido y aparece si algo falla. */
+  '<div class="btnrow">' +
+    (PUEDE_ENVIAR ? '<button class="btn" id="rpSend" type="button">' + T.enviar + '</button>' : "") +
+    '<button class="btn ghost" id="rpCopy" type="button"' + (PUEDE_ENVIAR ? ' hidden' : '') + '>' + T.copiar + '</button>' +
+  '</div>' +
+  '<p class="rpmsg" id="rpMsg"></p>' +
+  '<p class="rpfine">' + T.letraChica + '</p>';
+
+/* Va donde termina el resultado, no al final de todo */
+var ancla = S.antesDe ? wrap.querySelector(S.antesDe) : null;
+var nav = wrap.querySelector("nav.bottomnav");
+if(ancla && ancla.parentNode === wrap && ancla.nextSibling) wrap.insertBefore(card, ancla.nextSibling);
+else if(nav && nav.parentNode === wrap) wrap.insertBefore(card, nav);
+else wrap.appendChild(card);
+
+var elName = card.querySelector("#rpName");
+var elClass = card.querySelector("#rpClass");
+var elTeacher = card.querySelector("#rpTeacher");
+var elMsg = card.querySelector("#rpMsg");
+var elSend = card.querySelector("#rpSend");
+var elCopy = card.querySelector("#rpCopy");
+
+/* Las casillas arrancan VACIAS siempre. No se recuerdan a proposito: el
+   nombre de otro ya cargado es una entrega mal atribuida esperando a pasar. */
+(function limpiarViejo(){
+  var o = leer();
+  if(o.name || o.klass || o.teacher){
+    delete o.name; delete o.klass; delete o.teacher;
+    guardar(o);
+  }
+})();
+
+var enviado = null;   /* el texto del ultimo informe que salio */
+
+/* ---------- el boton que baja hasta la tarjeta ----------
+   Va en la misma fila que "corregir", que es donde el alumno esta mirando
+   cuando le aparece el puntaje. */
+function ponerAtajos(){
+  var cards = wrap.querySelectorAll(".card, .gamecard");
+  for(var i = 0; i < cards.length; i++){
+    var c = cards[i];
+    if(c === card || c.querySelector(".rpjump")) continue;
+    var marcador = S.marcador ? c.querySelector(S.marcador) : null;
+    var insignia = S.insignia ? c.querySelector(".done") : null;
+    var hay = (marcador && /[0-9]/.test(texto(marcador))) ||
+              (insignia && String(insignia.className).indexOf("hidden") < 0);
+    var fila = c.querySelector(".btnrow");
+    if(!hay || !fila) continue;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "btn ghost rpjump";
+    b.textContent = T.atajo;
+    b.addEventListener("click", function(){
+      card.scrollIntoView({ block: "start" });
+      elName.focus();
+    });
+    fila.appendChild(b);
+  }
+}
+
+function pintar(){
+  var r = informe();
+  ponerAtajos();
+  /* Si siguio trabajando despues de enviar, el boton vuelve: lo que se evita
+     es mandar dos veces LO MISMO, no que entregue lo que hizo despues. */
+  if(elSend && enviado !== null && r && r.texto !== enviado){
+    elSend.disabled = false;
+    elSend.textContent = T.enviarOtra;
+  }
+}
+
+/* cada click puede cambiar el puntaje: se vuelve a mirar la pantalla */
+var pend = null;
+wrap.addEventListener("click", function(){
+  if(pend) window.clearTimeout(pend);
+  pend = window.setTimeout(function(){ anotar(); pintar(); }, 250);
+}, true);
+window.addEventListener("pagehide", function(){ anotar(); });
+
+function aviso(t, bien){
+  elMsg.textContent = t;
+  elMsg.className = "rpmsg " + (bien ? "ok" : "no");
+}
+function cabecera(){
+  return (elName.value.trim() || "(no name)") +
+         "   " + (elClass && elClass.value ? elClass.value : "-") +
+         "   " + new Date().toISOString().slice(0, 10);
+}
+
+/* ---------- copiar: el plan B, funciona hasta sin internet ---------- */
+elCopy.addEventListener("click", function(){
+  var r = informe();
+  if(!r){ aviso(T.nadaAun, false); return; }
+  var t = cabecera() + "\n" + r.texto;
+  var ok = false;
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t);
+      ok = true;
+    }
+  }catch(e){}
+  if(!ok){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = t;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+    }catch(e2){ ok = false; }
+  }
+  aviso(ok ? T.copiado : T.noCopiado, ok);
+});
+
+/* ============================================================
+   ENVIAR
+   ============================================================ */
+if(elSend){
+  elSend.addEventListener("click", function(){
+    var r = informe();
+    if(!elName.value.trim()){ aviso(T.faltaNombre, false); elName.focus(); return; }
+    if(elClass && !elClass.value){ aviso(T.faltaCurso, false); elClass.focus(); return; }
+    if(!elTeacher.value){ aviso(T.faltaDoc, false); elTeacher.focus(); return; }
+    if(!r){ aviso(T.nadaAun, false); return; }
+
+    var datos = {
+      nombre_alumno: elName.value.trim(),
+      curso: elClass ? elClass.value : "",
+      docente: elTeacher.value,
+      docente_nombre: elTeacher.options[elTeacher.selectedIndex].textContent,
+      pagina: r.stop,
+      puntaje: r.got + " / " + r.total,
+      resultado: r.texto,
+      timestamp: new Date().toISOString()
+    };
+    var cuerpo = JSON.stringify(datos);
+    /* Texto plano a proposito: en no-cors el navegador solo acepta unos pocos
+       Content-Type y con application/json ni sale el pedido. Del otro lado
+       Apps Script lo lee igual con JSON.parse. */
+    var cabeceras = { "Content-Type": "text/plain;charset=utf-8" };
+
+    elSend.disabled = true;
+    aviso(T.mandando, true);
+
+    var bien = function(extra){
+      enviado = r.texto;
+      elSend.textContent = T.enviado;
+      elCopy.hidden = true;
+      aviso(T.ok.replace("$", datos.docente_nombre) + (extra ? " " + extra : ""), true);
+    };
+    var mal = function(txt, conCopia){
+      elSend.disabled = false;
+      /* si queda diciendo "Sent" el alumno cree que ya entrego */
+      elSend.textContent = (enviado === null) ? T.enviar : T.enviarOtra;
+      if(conCopia !== false) elCopy.hidden = false;
+      aviso(txt || T.fallo, false);
+    };
+
+    /* ================== LEER ESTO ==================
+       Primero se intenta en modo CORS, que es el bueno: Apps Script devuelve
+       las cabeceras necesarias, asi que se puede LEER la respuesta y saber de
+       verdad si el servidor escribio la fila. Ese "Sent" no es optimista: es
+       lo que contesto el servidor.
+
+       Si ese camino se cae -sin internet, o un filtro de la escuela- se
+       reintenta en no-cors. AHI la respuesta es OPACA: el navegador no deja
+       ver ni el estado ni el cuerpo, asi que "el pedido salio" es todo lo que
+       se sabe. No prueba que se haya escrito la fila ni que el mail haya
+       salido, y por eso el cartel lo dice. La prueba de verdad es la planilla.
+       =============================================== */
+    var aCiegas = function(){
+      try{
+        window.fetch(CONFIG.url, { method: "POST", mode: "no-cors", headers: cabeceras, body: cuerpo })
+          .then(function(){ bien(T.sinConfirmar); }, function(){ mal(); });
+      }catch(e2){ mal(); }
+    };
+    try{
+      window.fetch(CONFIG.url, { method: "POST", headers: cabeceras, body: cuerpo })
+        .then(function(resp){ return resp.text(); })
+        .then(function(txt){
+          var o;
+          try{ o = JSON.parse(txt); }catch(e3){ o = null; }
+          if(o && o.status === "ok") bien("");
+          else if(o && /ya enviado/.test(o.message || "")) mal(T.repetido, false);
+          else if(o) mal(T.rechazado);
+          else aCiegas();
+        }, aCiegas);
+    }catch(e){ aCiegas(); }
+  });
+}
+
+/* Para el diagnostico: devuelve EXACTAMENTE el informe que se mandaria.
+   No cambia nada de lo que ve el alumno; sirve para que, una vez instalado el
+   modulo, se pueda comprobar desde la consola que lo que viaja es lo que se
+   espera, sin depender de que un script aparte imite esta logica. */
+window.__entregaInformes = window.__entregaInformes || {};
+window.__entregaInformes[SLUG] = informe;
+
+anotar();
+pintar();
+};
+</script>
+<script id="engine-block">
+/* ============================================================
+   MOTOR - arma el menu y las 8 hojas a partir de DATA
+   ============================================================
+   No sabe nada del contenido: todo viene de DATA (datos.js) y las
+   funciones puras de LOGIC (logica.js).
+
+   El DOM guarda SOLO un indice numerico (data-id) que apunta a REG.
+   Nada de JSON en atributos: se rompe con los apostrofes de
+   didn't / wasn't.
+
+   Contrato con el modulo de entrega (informe.js), que LEE la pantalla:
+     .item         el bloque de un ejercicio, con su .rn (el numerito)
+     .exp.wrong    el cartel de una respuesta incorrecta
+       .sol        adentro: "Answer: ..."
+     .rpwas        (oculto) lo que escribio el alumno, un span por hueco
+     .medal        .mt nombre de la parte, .ms.scoreline "8 / 10"
+   ============================================================ */
+(function(){
+"use strict";
+
+var REG = [];        /* un registro por hueco (gap) u opcion (choice) */
+var SECS = [];       /* un registro por parte de cada hoja */
+var PROG = {};       /* puntaje de esta sesion, para el menu */
+var ACTIVE = "menu";
+
+var PAGES = DATA.pages;
+
+/* ---------- utilidades del DOM ---------- */
+function el(tag, cls, txt){
+  var n = document.createElement(tag);
+  if(cls) n.className = cls;
+  if(txt !== undefined && txt !== null) n.textContent = txt;
+  return n;
+}
+function clear(n){ while(n.firstChild) n.removeChild(n.firstChild); }
+
+/* ---------- un texto con huecos -> nodos ----------
+   ctx.blanks recibe los ids de REG de los huecos que se crean.
+   ctx.gnum (opcional): contador para numerar los huecos de un texto corrido. */
+function renderText(host, str, ctx){
+  var toks = LOGIC.tokenize(str), i, t;
+  for(i = 0; i < toks.length; i++){
+    t = toks[i];
+    if(t.k === "t"){
+      host.appendChild(document.createTextNode(t.s));
+    } else if(t.k === "h"){
+      host.appendChild(el("b", "cue", t.s));
+    } else if(t.k === "x"){
+      var ex = el("span", "exans");
+      var cut = t.s.indexOf("::");
+      if(cut >= 0){
+        host.appendChild(document.createTextNode(t.s.slice(0, cut)));
+        ex.className = "circ";
+        ex.textContent = t.s.slice(cut + 2);
+      } else {
+        ex.textContent = t.s;
+      }
+      host.appendChild(ex);
+    } else if(t.k === "g"){
+      var num = null;
+      /* el numerito y el campo van juntos: que no se separen al cortar la linea */
+      var gw = el("span", "gwrap");
+      if(ctx.gnum){
+        ctx.gnum.n++;
+        num = ctx.gnum.n;
+        gw.appendChild(el("span", "gn", String(num)));
+      }
+      var inp = document.createElement("input");
+      inp.type = "text";
+      inp.setAttribute("autocomplete", "off");
+      inp.setAttribute("autocapitalize", "off");
+      inp.setAttribute("spellcheck", "false");
+      var len = 0, k;
+      for(k = 0; k < t.show.length; k++) len = Math.max(len, t.show[k].length);
+      inp.style.width = Math.min(Math.max(len + 4, 9), 34) + "ch";
+      inp.className = "gap";
+      var gid = REG.push({ k: "g", accept: t.accept, show: t.show, el: inp, num: num }) - 1;
+      inp.setAttribute("data-id", String(gid));
+      gw.appendChild(inp);
+      host.appendChild(gw);
+      ctx.blanks.push(gid);
+    } else if(t.k === "c"){
+      var cnum = null;
+      if(ctx.gnum){
+        ctx.gnum.n++;
+        cnum = ctx.gnum.n;
+        host.appendChild(el("span", "gn", String(cnum)));
+      }
+      var grp = el("span", "optgroup");
+      var cid = REG.push({ k: "c", opts: t.opts, show: t.show, sel: -1, btns: [], el: grp, num: cnum }) - 1;
+      grp.setAttribute("data-id", String(cid));
+      for(k = 0; k < t.opts.length; k++){
+        var b = el("button", "pickbtn", t.opts[k].t);
+        b.type = "button";
+        b.setAttribute("data-id", String(cid));
+        b.setAttribute("data-opt", String(k));
+        grp.appendChild(b);
+        REG[cid].btns.push(b);
+      }
+      host.appendChild(grp);
+      ctx.blanks.push(cid);
+    }
+  }
+}
+
+/* ---------- que escribio el alumno en un hueco ---------- */
+function typed(r){
+  if(r.k === "g") return r.el.value.trim();
+  return r.sel >= 0 ? r.opts[r.sel].t : "";
+}
+function isRight(r){
+  if(r.k === "g") return LOGIC.gapOk(r.accept, r.el.value);
+  return LOGIC.choiceOk(r.opts, r.sel);
+}
+function solText(r){ return r.show.join(" / "); }
+
+/* ---------- clicks en las opciones ---------- */
+document.addEventListener("click", function(ev){
+  var b = ev.target;
+  if(!b || !b.classList || !b.classList.contains("pickbtn")) return;
+  var r = REG[parseInt(b.getAttribute("data-id"), 10)];
+  var k = parseInt(b.getAttribute("data-opt"), 10);
+  if(!r || r.locked) return;
+  r.sel = (r.sel === k) ? -1 : k;      /* tocar de nuevo la deselecciona */
+  for(var i = 0; i < r.btns.length; i++){
+    r.btns[i].classList.toggle("on", i === r.sel);
+    r.btns[i].classList.remove("good", "bad");
+  }
+});
+
+/* ---------- las cajas de gramatica de la hoja ---------- */
+function renderBoxes(host, boxes){
+  var row = el("div", "boxrow");
+  for(var i = 0; i < boxes.length; i++){
+    var bx = el("div", "gbox gbox" + (i % 2 ? "b" : "a"));
+    bx.appendChild(el("h3", "", boxes[i].title));
+    for(var j = 0; j < boxes[i].lines.length; j++){
+      var ln = boxes[i].lines[j], p;
+      if(ln.charAt(0) === "~"){ p = el("p", "formula", ln.slice(1)); }
+      else if(ln.charAt(0) === "•" || ln.charAt(0) === "○"){ p = el("p", "bul", ln); }
+      else { p = el("p", "", ln); }
+      bx.appendChild(p);
+    }
+    row.appendChild(bx);
+  }
+  host.appendChild(row);
+}
+function renderBank(host, words){
+  var bank = el("div", "bank");
+  var list = words.split(", ");
+  for(var i = 0; i < list.length; i++) bank.appendChild(el("span", "chip c" + (i % 5), list[i]));
+  host.appendChild(bank);
+}
+
+/* ---------- un item (una oracion con sus huecos) ---------- */
+function makeItem(label, build){
+  var it = el("div", "item");
+  var rn = el("span", "rn");
+  rn.textContent = label.n;
+  if(label.sub){ rn.appendChild(el("small", "", " " + label.sub)); }
+  it.appendChild(rn);
+  var body = el("div", "stext");
+  it.appendChild(body);
+  var rec = { el: it, body: body, blanks: [], n: label.n + (label.sub ? " " + label.sub : ""), ex: !!label.ex };
+  build(body, rec);
+  return rec;
+}
+
+/* ---------- una parte (seccion) de una hoja ---------- */
+function buildSection(page, sec, idx){
+  var rec = { page: page, sec: sec, idx: idx, items: [], blanks: [], panel: null, medalHost: null };
+  var card = el("section", "card part" + "ABCRX".charAt(idx % 5));
+  card.appendChild(el("h2", "", sec.name));
+  if(sec.lead) card.appendChild(el("p", "lead", sec.lead));
+  if(sec.instr) card.appendChild(el("p", "instr", sec.instr));
+  if(sec.bank && sec.bankAt === "above") renderBank(card, sec.bank);
+
+  var i, it, ctx;
+  if(sec.kind === "list"){
+    for(i = 0; i < sec.items.length; i++){
+      (function(d){
+        it = makeItem({ n: d.n, ex: d.ex }, function(body, r){
+          renderText(body, d.t, { blanks: r.blanks });
+        });
+        if(d.ex) it.el.classList.add("example");
+        it.sol = d.sol || null;
+        rec.items.push(it);
+        card.appendChild(it.el);
+      })(sec.items[i]);
+    }
+  } else if(sec.kind === "write"){
+    for(i = 0; i < sec.items.length; i++){
+      (function(d){
+        it = makeItem({ n: d.n }, function(body, r){
+          body.appendChild(el("span", "prompt", d.p));
+          var inp = document.createElement("input");
+          inp.type = "text";
+          inp.className = "gap wide";
+          inp.setAttribute("autocomplete", "off");
+          inp.setAttribute("autocapitalize", "off");
+          inp.setAttribute("spellcheck", "false");
+          var gid = REG.push({ k: "g", accept: d.a, show: d.a.slice(0, 1), el: inp, num: null }) - 1;
+          inp.setAttribute("data-id", String(gid));
+          body.appendChild(el("br"));
+          body.appendChild(inp);
+          r.blanks.push(gid);
+        });
+        rec.items.push(it);
+        card.appendChild(it.el);
+      })(sec.items[i]);
+    }
+  } else if(sec.kind === "table2"){
+    var tbl = el("table", "booktable");
+    var thead = el("thead"), hr = el("tr");
+    hr.appendChild(el("th", "", sec.cols[0]));
+    hr.appendChild(el("th", "", sec.cols[1]));
+    thead.appendChild(hr);
+    tbl.appendChild(thead);
+    var tb = el("tbody");
+    for(i = 0; i < sec.rows.length; i++){
+      var row = sec.rows[i], tr = el("tr");
+      var sides = [["l", "simple"], ["r", "continuous"]];
+      for(var s = 0; s < 2; s++){
+        (function(txt, sub, cls){
+          var td = el("td", cls);
+          it = makeItem({ n: row.n, sub: sub }, function(body, r){
+            renderText(body, txt, { blanks: r.blanks });
+          });
+          rec.items.push(it);
+          td.appendChild(it.el);
+          tr.appendChild(td);
+        })(row[sides[s][0]], sides[s][1], sides[s][0] === "l" ? "colL" : "colR");
+      }
+      tb.appendChild(tr);
+    }
+    tbl.appendChild(tb);
+    card.appendChild(tbl);
+  } else if(sec.kind === "para"){
+    var gnum = { n: 0 };
+    var wrapP = el("div", "paras");
+    for(i = 0; i < sec.paras.length; i++){
+      var p = el("p", "para");
+      ctx = { blanks: rec.blanks, gnum: gnum };
+      renderText(p, sec.paras[i], ctx);
+      wrapP.appendChild(p);
+    }
+    card.appendChild(wrapP);
+    rec.panel = el("div", "explist");
+    rec.panel.hidden = true;
+    card.appendChild(rec.panel);
+  }
+  if(sec.bank && sec.bankAt === "below") renderBank(card, sec.bank);
+
+  /* blanks de la parte = los de todos sus items (o los del texto corrido) */
+  for(i = 0; i < rec.items.length; i++){
+    if(rec.items[i].ex) continue;
+    for(var b = 0; b < rec.items[i].blanks.length; b++) rec.blanks.push(rec.items[i].blanks[b]);
+  }
+
+  var row2 = el("div", "btnrow");
+  var bCheck = el("button", "btn", "Check my answers");
+  bCheck.type = "button";
+  var bAgain = el("button", "btn ghost", "Try again");
+  bAgain.type = "button";
+  row2.appendChild(bCheck);
+  row2.appendChild(bAgain);
+  card.appendChild(row2);
+  rec.medalHost = el("div", "scorebox");
+  card.appendChild(rec.medalHost);
+  rec.card = card;
+
+  bCheck.addEventListener("click", function(){ checkSection(rec); });
+  bAgain.addEventListener("click", function(){ resetSection(rec); });
+  SECS.push(rec);
+  return rec;
+}
+
+/* ---------- corregir ---------- */
+function wipeFeedback(rec){
+  var i, k;
+  for(i = 0; i < rec.items.length; i++){
+    var it = rec.items[i];
+    var olds = it.el.querySelectorAll(".exp, .rpwas");
+    for(k = olds.length - 1; k >= 0; k--) olds[k].parentNode.removeChild(olds[k]);
+    it.el.classList.remove("done", "failed");
+  }
+  if(rec.panel){ clear(rec.panel); rec.panel.hidden = true; }
+  clear(rec.medalHost);
+}
+
+function checkSection(rec){
+  wipeFeedback(rec);
+  var got = 0, total = 0, i, k, it, r;
+
+  /* pintar cada hueco */
+  for(i = 0; i < rec.blanks.length; i++){
+    r = REG[rec.blanks[i]];
+    var ok = isRight(r);
+    total++;
+    if(ok) got++;
+    if(r.k === "g"){
+      r.el.classList.remove("ok", "no");
+      r.el.classList.add(ok ? "ok" : "no");
+    } else {
+      for(k = 0; k < r.btns.length; k++){
+        r.btns[k].classList.remove("good", "bad");
+        if(k === r.sel) r.btns[k].classList.add(ok ? "good" : "bad");
+      }
+    }
+  }
+
+  /* cartel por item (listas y tabla) */
+  var gapWrong = [];
+  for(i = 0; i < rec.items.length; i++){
+    it = rec.items[i];
+    if(it.ex || !it.blanks.length) continue;
+    var wrong = false, sols = [], was = [];
+    for(k = 0; k < it.blanks.length; k++){
+      r = REG[it.blanks[k]];
+      if(!isRight(r)) wrong = true;
+      sols.push(solText(r));
+      var v = typed(r);
+      was.push(v || "-");
+    }
+    if(!wrong){ it.el.classList.add("done"); continue; }
+    it.el.classList.add("failed");
+    var solLine = it.sol || sols.join(" + ");
+    var box = el("div", "exp wrong");
+    box.appendChild(el("span", "sol", "Answer: " + solLine));
+    it.el.appendChild(box);
+    for(k = 0; k < was.length; k++){
+      var w = el("span", "rpwas", was[k]);
+      w.hidden = true;
+      it.el.appendChild(w);
+    }
+  }
+
+  /* panel numerado debajo de un texto corrido */
+  if(rec.panel){
+    var bad = 0;
+    for(i = 0; i < rec.blanks.length; i++){
+      r = REG[rec.blanks[i]];
+      if(isRight(r)) continue;
+      bad++;
+      var fb = el("div", "item fbitem");
+      fb.appendChild(el("span", "rn", String(r.num)));
+      var bx = el("div", "exp wrong");
+      bx.appendChild(el("span", "sol", "Answer: " + solText(r)));
+      fb.appendChild(bx);
+      var ww = el("span", "rpwas", typed(r) || "-");
+      ww.hidden = true;
+      fb.appendChild(ww);
+      rec.panel.appendChild(fb);
+    }
+    if(!bad) rec.panel.appendChild(el("p", "allgood", "All correct!"));
+    rec.panel.hidden = false;
+  }
+
+  /* la medalla: el modulo de entrega la lee */
+  var medal = el("div", "medal");
+  medal.appendChild(el("span", "mt", rec.sec.name));
+  var ms = el("span", "ms scoreline", got + " / " + total);
+  medal.appendChild(ms);
+  rec.medalHost.appendChild(medal);
+
+  var pg = PROG[rec.page.id] || (PROG[rec.page.id] = {});
+  pg[rec.idx] = { got: got, total: total };
+  paintMenuScore(rec.page.id);
+}
+
+function resetSection(rec){
+  wipeFeedback(rec);
+  for(var i = 0; i < rec.blanks.length; i++){
+    var r = REG[rec.blanks[i]];
+    if(r.k === "g"){
+      r.el.value = "";
+      r.el.classList.remove("ok", "no");
+    } else {
+      r.sel = -1;
+      for(var k = 0; k < r.btns.length; k++) r.btns[k].classList.remove("on", "good", "bad");
+    }
+  }
+  var pg = PROG[rec.page.id];
+  if(pg){ delete pg[rec.idx]; }
+  paintMenuScore(rec.page.id);
+}
+
+/* ---------- menu ---------- */
+function paintMenuScore(id){
+  var n = document.getElementById("zs-" + id);
+  if(!n) return;
+  var pg = PROG[id], got = 0, total = 0, any = false;
+  for(var k in pg){
+    if(Object.prototype.hasOwnProperty.call(pg, k)){ got += pg[k].got; total += pg[k].total; any = true; }
+  }
+  n.textContent = any ? ("Checked so far: " + got + " / " + total) : "";
+}
+
+function countBlanks(page){
+  var n = 0;
+  for(var s = 0; s < page.sections.length; s++){
+    var sec = page.sections[s], i, toks, k;
+    var texts = [];
+    if(sec.kind === "list"){ for(i = 0; i < sec.items.length; i++) if(!sec.items[i].ex) texts.push(sec.items[i].t); }
+    else if(sec.kind === "para"){ texts = sec.paras; }
+    else if(sec.kind === "table2"){ for(i = 0; i < sec.rows.length; i++){ texts.push(sec.rows[i].l); texts.push(sec.rows[i].r); } }
+    else if(sec.kind === "write"){ n += sec.items.length; continue; }
+    for(i = 0; i < texts.length; i++){
+      toks = LOGIC.tokenize(texts[i]);
+      for(k = 0; k < toks.length; k++) if(toks[k].k === "g" || toks[k].k === "c") n++;
+    }
+  }
+  return n;
+}
+
+function buildMenu(){
+  var s = document.getElementById("s-menu");
+  var map = s.querySelector(".map");
+  for(var i = 0; i < PAGES.length; i++){
+    var p = PAGES[i];
+    var a = el("a", "zone");
+    a.href = "#" + p.id;
+    a.appendChild(el("span", "znum", "Worksheet " + p.id));
+    a.appendChild(el("div", "zt", p.title));
+    a.appendChild(el("p", "zd", p.sub + " · " + countBlanks(p) + " answers"));
+    var zs = el("p", "zscore");
+    zs.id = "zs-" + p.id;
+    a.appendChild(zs);
+    map.appendChild(a);
+  }
+}
+
+function buildPage(p){
+  var s = document.getElementById("s-" + p.id);
+  var top = el("div", "pagetop");
+  var back = el("a", "btn ghost", "← Menu");
+  back.href = "#menu";
+  top.appendChild(back);
+  s.appendChild(top);
+
+  var hero = el("div", "phero");
+  hero.appendChild(el("span", "tag", "Worksheet " + p.id));
+  hero.appendChild(el("h1", "sticker", p.title));
+  s.appendChild(hero);
+
+  if(p.boxes && p.boxesAt === "top"){
+    renderBoxes(s, p.boxes);
+    if(p.note) s.appendChild(el("p", "pnote", p.note));
+  }
+  for(var i = 0; i < p.sections.length; i++){
+    s.appendChild(buildSection(p, p.sections[i], i).card);
+  }
+  if(p.boxes && p.boxesAt === "bottom") renderBoxes(s, p.boxes);
+
+  var nav = el("nav", "bottomnav");
+  var b2 = el("a", "btn ghost", "← Back to the menu");
+  b2.href = "#menu";
+  nav.appendChild(b2);
+  var nxt = PAGES[PAGES.indexOf(p) + 1];
+  if(nxt){
+    var b3 = el("a", "btn", "Worksheet " + nxt.id + " →");
+    b3.href = "#" + nxt.id;
+    nav.appendChild(b3);
+  }
+  s.appendChild(nav);
+}
+
+/* ---------- navegacion por hash ---------- */
+function show(id){
+  if(!document.getElementById("s-" + id)) id = "menu";
+  ACTIVE = id;
+  var all = document.querySelectorAll(".screen");
+  for(var i = 0; i < all.length; i++) all[i].classList.toggle("on", all[i].id === "s-" + id);
+  try{ window.scrollTo(0, 0); }catch(e){}
+}
+window.addEventListener("hashchange", function(){ show(window.location.hash.replace("#", "") || "menu"); });
+
+/* ---------- arranque ---------- */
+buildMenu();
+for(var pi = 0; pi < PAGES.length; pi++) buildPage(PAGES[pi]);
+
+/* el modulo de entrega: una tarjeta por pantalla, cada una lee SOLO su pantalla */
+if(window.initReport){
+  window.initReport({ root: document.getElementById("s-menu"), slug: "menu", home: true, title: "Past simple vs past continuous" });
+  for(var ri = 0; ri < PAGES.length; ri++){
+    window.initReport({ root: document.getElementById("s-" + PAGES[ri].id), slug: "ws" + PAGES[ri].id,
+                        home: false, title: "Worksheet " + PAGES[ri].id + " - " + PAGES[ri].title });
+  }
+}
+/* para el diagnostico: el informe de la pantalla que se ve ahora */
+window.__entregaInforme = function(){
+  var f = window.__entregaInformes && window.__entregaInformes[ACTIVE === "menu" ? "menu" : "ws" + ACTIVE];
+  return f ? f() : null;
+};
+/* para probar desde la consola / el verificador */
+window.PSPC = { REG: REG, SECS: SECS, PAGES: PAGES, isRight: isRight };
+
+show(window.location.hash.replace("#", "") || "menu");
+})();
+
+</script>
+</body>
+</html>
